@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>line \ Language (API)</title>
+        <title>box \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,40 +35,45 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>line</h3></td>
+        <td><h3>box</h3></td>
     </tr>
 
             <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/line2.png"/>
-                <pre class='margin'>processing$line(30, 20, 85, 20)
-processing$stroke(126)
-processing$line(85, 20, 85, 75)
-processing$stroke(255)
-processing$line(85, 75, 30, 75)
-</pre>
-            </div>
-                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/line1.png"/>
-                <pre class='margin'>processing$line(30, 20, 85, 75)
-</pre>
-            </div>
-                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/line3.png"/>
-                <pre class='margin'># Drawing lines in 3D requires P3D as a parameter to size()
-
-P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+                    <div class="example">                 <img src="/home/ist/code/Processing.R-docs/docs/img/box2.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
 
 settings &lt;- function() {
     processing$size(100, 100, P3D)
 }
 
 setup &lt;- function() {
+    processing$noLoop()
 }
 
 draw &lt;- function() {
-    processing$line(30, 20, 0, 85, 20, 15)
-    processing$stroke(126)
-    processing$line(85, 20, 15, 85, 75, 0)
-    processing$stroke(255)
-    processing$line(85, 75, 0, 30, 75, -50)
+    processing$translate(58, 48, 0)
+    processing$rotateY(0.5)
+    processing$noFill()
+    processing$box(40, 20, 50)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/docs/img/box1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    processing$size(100, 100, P3D)
+}
+
+setup &lt;- function() {
+    processing$noLoop()
+}
+
+draw &lt;- function() {
+    processing$translate(58, 48, 0)
+    processing$rotateY(0.5)
+    processing$noFill()
+    processing$box(40)
 }
 </pre>
             </div>

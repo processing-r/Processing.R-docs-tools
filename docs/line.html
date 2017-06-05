@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>arc \ Language (API)</title>
+        <title>line \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,52 +35,41 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>arc</h3></td>
+        <td><h3>line</h3></td>
     </tr>
 
             <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc2.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
-
-# TODO: Fix double to int cast.
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(OPEN))
+                    <div class="example">                 <img src="/home/ist/code/Processing.R-docs/docs/img/line2.png"/>
+                <pre class='margin'>processing$line(30, 20, 85, 20)
+processing$stroke(126)
+processing$line(85, 20, 85, 75)
+processing$stroke(255)
+processing$line(85, 75, 30, 75)
 </pre>
             </div>
-                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc3.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
-
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(CHORD))
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/docs/img/line1.png"/>
+                <pre class='margin'>processing$line(30, 20, 85, 75)
 </pre>
             </div>
-                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc1.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-HALF_PI &lt;- PI/2
-QUARTER_PI &lt;- PI/4
-TWO_PI &lt;- PI * 2
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/docs/img/line3.png"/>
+                <pre class='margin'># Drawing lines in 3D requires P3D as a parameter to size()
 
-processing$arc(50, 55, 50, 50, 0, HALF_PI)
-processing$noFill()
-processing$arc(50, 55, 60, 60, HALF_PI, PI)
-processing$arc(50, 55, 70, 70, PI, PI + QUARTER_PI)
-processing$arc(50, 55, 80, 80, PI + QUARTER_PI, TWO_PI)
-</pre>
-            </div>
-                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc4.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
+P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
 
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(PIE))
+settings &lt;- function() {
+    processing$size(100, 100, P3D)
+}
+
+setup &lt;- function() {
+}
+
+draw &lt;- function() {
+    processing$line(30, 20, 0, 85, 20, 15)
+    processing$stroke(126)
+    processing$line(85, 20, 15, 85, 75, 0)
+    processing$stroke(255)
+    processing$line(85, 75, 0, 30, 75, -50)
+}
 </pre>
             </div>
                             </tr>

@@ -12,7 +12,7 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 # TODO: Refactor
 template_dir = '/home/ist/code/Processing.R-docs/templates'
-output_dir = '/home/ist/code/Processing.R-docs/generated'
+output_dir = '/home/ist/code/Processing.R-docs/docs'
 content_dir = '/home/ist/code/Processing.R-docs/content'
 
 class Generator(object):

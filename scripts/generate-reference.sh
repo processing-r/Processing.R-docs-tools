@@ -3,8 +3,8 @@
 ROOT=$(dirname "${BASH_SOURCE}")/..
 
 cd ${ROOT}
-rm -rf generated
-mkdir -p generated/img
-cp -r content/* generated/
+rm -rf docs
+mkdir -p docs/img
+cp -r content/* docs/
 exec python ./src/generate.py $@
 cd - > /dev/null
