@@ -1,0 +1,25 @@
+{% extends "page_template.jinja" %}
+
+{% block title %}Reference{% endblock %}
+
+{% block content %}
+<h1 class="large-header"><span class="black">Processing.py Reference.</span> Processing is not a single programming language, but an arts-centric system for learning, teaching, and making visual form with code. This Reference documents its Python Mode.</h1>
+<div class="pyreference">
+{% for item in elements %}
+    {% if item['type'] == 'start-category' %}
+        <div class="pycategory">
+        <h3>{{ item['content'] }}</h3>
+    {% elif item['type'] == 'start-subcategory' %}
+        <h5>{{ item['content'] }}</h5>
+    {% elif item['type'] == 'start-list' %}
+        <ul>
+    {% elif item['type'] == 'link' %}
+        <li><a href="{{create_ref_link(item['content'].flatname)}}">{{ item['content'].name }}</a></li>
+    {% elif item['type'] == 'end-list' %}
+        </ul>
+    {% elif item['type'] == 'end-category' %}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock %}
