@@ -80,7 +80,6 @@ class ReferenceItem(object):
         retcode = call(['java', '-jar', self.jar_path, temp_file.name])
         if retcode is not 0:
             logging.error('retcode of runner.jar: %d', retcode)
-        time.sleep(1)
 
 @click.command()
 @click.option('--core', default='', help='The location of Processing.R source code.')
