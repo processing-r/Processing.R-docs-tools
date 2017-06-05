@@ -6,12 +6,14 @@ import tempfile
 from subprocess import call
 import string
 import time
+import shutil
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 # TODO: Refactor
 template_dir = '/home/ist/code/Processing.R-docs/templates'
 output_dir = '/home/ist/code/Processing.R-docs/generated'
+content_dir = '/home/ist/code/Processing.R-docs/content'
 
 class Generator(object):
     def __init__(self, root, env, jar):
@@ -24,6 +26,10 @@ class Generator(object):
         self.output_html_dir = output_dir
         self.reference_dir = self.root_dir + '/examples/reference'
         self.reference_items = []
+
+    def generate(self):
+        self.parse_reference()
+        self.render_reference_items()
 
     def parse_reference(self):
         for filename in os.listdir(self.reference_dir):
@@ -95,8 +101,7 @@ def generate(core, jar):
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), trim_blocks='true')
 
     generator = Generator(core, env, jar)
-    generator.parse_reference()
-    generator.render_reference_items()
+    generator.generate()
 
 if __name__ == '__main__':
     generate()

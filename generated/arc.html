@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>{% block title %}{% endblock %}</title>
+        <title>arc \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -13,13 +13,11 @@
     </head>
     <body id="Langauge-en" onload="" >
         <div id="container">
-            {% block header %}
-            <div id="header">
+                        <div id="header">
                 <a href="/" title="Back to R Language Mode" class="processing-logo no-cover"></a>
             </div>
             <a id="TOP" name="TOP"></a>
-            {% endblock %}
-
+            
             
             <div id="navigation">
                 <div class="navBar" id="mainnav">
@@ -34,8 +32,75 @@
 
             <div class="content">
 
-                {% block content %}
-                {% endblock %}
+                <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+    <tr class="name-row">
+        <th scope="row">Name</th>
+        <td><h3>arc</h3></td>
+    </tr>
+
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc2.png"/>
+                <pre class='margin'>PI &lt;- 3.1415
+QUARTER_PI &lt;- PI/4
+OPEN &lt;- 1
+CHORD &lt;- 2
+PIE &lt;- 3
+
+# TODO: Fix double to int cast.
+processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(OPEN))
+</pre>
+            </div>
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc3.png"/>
+                <pre class='margin'>PI &lt;- 3.1415
+QUARTER_PI &lt;- PI/4
+OPEN &lt;- 1
+CHORD &lt;- 2
+PIE &lt;- 3
+
+processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(CHORD))
+</pre>
+            </div>
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc1.png"/>
+                <pre class='margin'>PI &lt;- 3.1415
+HALF_PI &lt;- PI/2
+QUARTER_PI &lt;- PI/4
+TWO_PI &lt;- PI * 2
+
+processing$arc(50, 55, 50, 50, 0, HALF_PI)
+processing$noFill()
+processing$arc(50, 55, 60, 60, HALF_PI, PI)
+processing$arc(50, 55, 70, 70, PI, PI + QUARTER_PI)
+processing$arc(50, 55, 80, 80, PI + QUARTER_PI, TWO_PI)
+</pre>
+            </div>
+                                <div class="example">                 <img src="/home/ist/code/Processing.R-docs/generated/img/arc4.png"/>
+                <pre class='margin'>PI &lt;- 3.1415
+QUARTER_PI &lt;- PI/4
+OPEN &lt;- 1
+CHORD &lt;- 2
+PIE &lt;- 3
+
+processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(PIE))
+</pre>
+            </div>
+                            </tr>
+    
+    <tr class="">
+        <th scope="row">Description</th>
+        <td>
+            
+        </td>
+    </tr>
+
+             <tr class=""><th scope="row">Syntax</th><td><pre></pre></td></tr>
+    
+    
+    
+    
+    
+    </table>
+
+Updated on .
 
                 <!-- Creative Commons License -->
                 <div class="license">
