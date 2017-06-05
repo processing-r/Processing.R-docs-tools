@@ -15,12 +15,14 @@ template_dir = '/home/ist/code/Processing.R-docs/templates'
 output_dir = '/home/ist/code/Processing.R-docs/docs'
 content_dir = '/home/ist/code/Processing.R-docs/content'
 
+img_dir = 'img'
+
 class Generator(object):
     def __init__(self, root, env, jar):
         self.root_dir = root
         self.env = env
         self.jar_path = jar
-        self.output_img_dir = os.path.join(output_dir, 'img')
+        self.output_img_dir = os.path.join(output_dir, img_dir)
         if not os.path.exists(self.output_img_dir):
             os.makedirs(self.output_img_dir)
         self.output_html_dir = output_dir
@@ -59,7 +61,7 @@ class ReferenceItem(object):
                 self.examples.append({
                     'code': code,
                     'path': sketchFile,
-                    'image': img_path
+                    'image': os.path.join(img_dir, ('%s.png' % filename))
                 })
 
     def generate_image(self, code, to):
