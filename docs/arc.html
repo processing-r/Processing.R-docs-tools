@@ -47,7 +47,7 @@ CHORD &lt;- 2
 PIE &lt;- 3
 
 # TODO: Fix double to int cast.
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(OPEN))
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(OPEN))
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc3.png"/>
@@ -57,7 +57,7 @@ OPEN &lt;- 1
 CHORD &lt;- 2
 PIE &lt;- 3
 
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(CHORD))
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(CHORD))
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc1.png"/>
@@ -66,11 +66,11 @@ HALF_PI &lt;- PI/2
 QUARTER_PI &lt;- PI/4
 TWO_PI &lt;- PI * 2
 
-processing$arc(50, 55, 50, 50, 0, HALF_PI)
-processing$noFill()
-processing$arc(50, 55, 60, 60, HALF_PI, PI)
-processing$arc(50, 55, 70, 70, PI, PI + QUARTER_PI)
-processing$arc(50, 55, 80, 80, PI + QUARTER_PI, TWO_PI)
+arc(50, 55, 50, 50, 0, HALF_PI)
+noFill()
+arc(50, 55, 60, 60, HALF_PI, PI)
+arc(50, 55, 70, 70, PI, PI + QUARTER_PI)
+arc(50, 55, 80, 80, PI + QUARTER_PI, TWO_PI)
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc4.png"/>
@@ -80,7 +80,7 @@ OPEN &lt;- 1
 CHORD &lt;- 2
 PIE &lt;- 3
 
-processing$arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(PIE))
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(PIE))
 </pre>
             </div>
                             </tr>
@@ -114,7 +114,7 @@ arc(<c>a</c>, <c>b</c>, <c>c</c>, <c>d</c>, <c>start</c>, <c>stop</c>, <c>mode</
                     <a class="code" href="./degrees.html">degrees</a><br />
             </table>
 
-Updated on Tue Jun  6 18:50:08 2017.
+Updated on Tue Jun  6 22:37:29 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">
