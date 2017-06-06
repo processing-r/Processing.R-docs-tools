@@ -8,6 +8,7 @@ import string
 import time
 import shutil
 import yaml
+import datetime
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
@@ -41,7 +42,7 @@ class Generator(object):
         for item in self.reference_items:
             reference_template = self.env.get_template('reference_item_template.jinja')
             with open(os.path.join(output_dir, ('%s.html' % item.name)), 'w+') as f:
-                f.write(reference_template.render(item=item))
+                f.write(reference_template.render(item=item, today=datetime.datetime.now().ctime()))
 
     def render_reference_index(self):
         categories = dict()
@@ -198,9 +199,7 @@ class ReferenceItem(object):
         # I don't know why temp file could not be written directly. It must be open() and written.
         temp_file = tempfile.NamedTemporaryFile(prefix='Processing.R.', suffix='.tmp.rpde')
         temp_file.write(bytes(actual_code, 'utf-8'))
-        print(temp_file.name)
         temp_file.seek(0)
-        print(temp_file.read())
         retcode = call(['java', '-jar', self.jar_path, temp_file.name])
         if retcode is not 0:
             logging.error('retcode of runner.jar: %d', retcode)
