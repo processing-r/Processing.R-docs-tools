@@ -152,9 +152,9 @@ class ReferenceItem(object):
         self.examples = []
 
         self.parse_reference_item()
-        self.parse_categary()
+        self.parse_property()
     
-    def parse_categary(self):
+    def parse_property(self):
         with open(os.path.join(self.item_dir, property_dir)) as f:
             raw_yaml_doc = f.read()
             yaml_obj = yaml.load(raw_yaml_doc)
@@ -165,6 +165,20 @@ class ReferenceItem(object):
                 self.description = yaml_obj['description']
             if 'syntax' in yaml_obj:
                 self.syntax = yaml_obj['syntax']
+            if 'parameters' in yaml_obj:
+                self.parameters = []
+                for parameter in yaml_obj['parameters']:
+                    self.parameters.append({
+                        'label': parameter['label'],
+                        'description': parameter['description']
+                    })
+            if 'related' in yaml_obj:
+                self.related = []
+                for related_function in yaml_obj['related']:
+                    self.related.append({
+                        'path': './%s.html' % related_function,
+                        'name': related_function
+                    })
 
     def parse_reference_item(self):
         for filename in os.listdir(self.item_dir):

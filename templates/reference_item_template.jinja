@@ -65,10 +65,10 @@
         </table></tr>
     {% endif %}
 
-    {% if item.relateds %}{# Who needs grammar? #}
+    {% if item.related %}{# Who needs grammar? #}
     <tr><th scope="row">Related</th><td class="code">
-        {% for related in item.relateds %}
-            <a class="code" href="{{ create_ref_link(related) }}">{{ items_dict[related].name }}</a><br />
+        {% for related_function in item.related %}
+            <a class="code" href="{{ related_function.path }}">{{ related_function.name }}</a><br />
         {% endfor %}
     {% endif %}
 </table>

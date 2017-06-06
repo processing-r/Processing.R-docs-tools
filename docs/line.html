@@ -77,19 +77,32 @@ draw &lt;- function() {
     <tr class="">
         <th scope="row">Description</th>
         <td>
-            
+            Draws a line (a direct path between two points) to the screen. The version of <b>line()</b> with four parameters draws the line in 2D.  To color a line, use the <b>stroke()</b> function. A line cannot be filled, therefore the <b>fill()</b> function will not affect the color of a line. 2D lines are drawn with a width of one pixel by default, but this can be changed with the <b>strokeWeight()</b> function. The version with six parameters allows the line to be placed anywhere within XYZ space. Drawing this shape in 3D with the <b>z</b> parameter requires the P3D parameter in combination with <b>size()</b> as shown in the above example.
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>line(<c>x1</c>, <c>y1</c>, <c>x2</c>, <c>y2</c>)\nline(<c>x1</c>, <c>y1</c>, <c>z1</c>, <c>x2</c>, <c>y2</c>, <c>z2</c>)</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">x1</th><td>x-coordinate of the first point</td></tr>
+                    <tr class=""><th scope="row" class="code">y1</th><td>y-coordinate of the first point</td></tr>
+                    <tr class=""><th scope="row" class="code">x2</th><td>x-coordinate of the second point</td></tr>
+                    <tr class=""><th scope="row" class="code">y2</th><td>y-coordinate of the second point</td></tr>
+                    <tr class=""><th scope="row" class="code">z1</th><td>z-coordinate of the first point</td></tr>
+                    <tr class=""><th scope="row" class="code">z2</th><td>z-coordinate of the second point</td></tr>
+                </table></tr>
     
     
     
     
-    
-    </table>
+        <tr><th scope="row">Related</th><td class="code">
+                    <a class="code" href="./strokeWeight.html">strokeWeight</a><br />
+                    <a class="code" href="./strokeJoin.html">strokeJoin</a><br />
+                    <a class="code" href="./strokeCap.html">strokeCap</a><br />
+                    <a class="code" href="./PShape_beginShape.html">PShape_beginShape</a><br />
+            </table>
 
-Updated on Tue Jun  6 17:38:18 2017.
+Updated on Tue Jun  6 18:27:00 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">
