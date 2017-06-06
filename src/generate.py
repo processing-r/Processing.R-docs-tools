@@ -158,8 +158,13 @@ class ReferenceItem(object):
             raw_yaml_doc = f.read()
             yaml_obj = yaml.load(raw_yaml_doc)
             self.category = yaml_obj['category']
-            self.subcategory = yaml_obj['subcategory']
-        
+            if 'subcategory' in yaml_obj:
+                self.subcategory = yaml_obj['subcategory']
+            if 'description' in yaml_obj:
+                self.description = yaml_obj['description']
+            if 'syntax' in yaml_obj:
+                self.syntax = yaml_obj['syntax']
+
     def parse_reference_item(self):
         for filename in os.listdir(self.item_dir):
             sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
