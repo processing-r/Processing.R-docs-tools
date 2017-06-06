@@ -11,11 +11,6 @@ import yaml
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
-# TODO: Refactor
-template_dir = 'templates'
-output_dir = 'docs'
-content_dir = 'content'
-
 img_dir = 'img'
 property_dir = '.property.yml'
 
@@ -208,7 +203,8 @@ class ReferenceItem(object):
 @click.command()
 @click.option('--core', default='', help='The location of Processing.R source code.')
 @click.option('--jar', default='', help='The location of runner.jar')
-def generate(core, jar):
+@click.option('--docs-dir', default='', help='The location of Processing.R docs')
+def generate(core, jar, docs_dir):
     '''Generate Processing.R web reference.'''
     # BUG: Fail to exit.
     if core is None or jar is None:
@@ -216,6 +212,19 @@ def generate(core, jar):
         exit(1)
     click.echo('The location of Processing.R source code:%s' % core)
     click.echo('The location of Processing.R runner.jar: %s' % jar)
+    click.echo('The location of Processing.R docs:       %s' % docs_dir)
+
+    template_dir_short = 'templates'
+    output_dir_short = 'docs'
+    content_dir_short = 'content'
+
+    global template_dir
+    global output_dir
+    global content_dir
+
+    template_dir = os.path.join(docs_dir, template_dir_short)
+    output_dir = os.path.join(docs_dir, output_dir_short)
+    content_dir = os.path.join(docs_dir, content_dir_short)
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), trim_blocks='true')
 
