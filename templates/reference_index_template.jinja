@@ -14,7 +14,7 @@
     {% elif item['type'] == 'start-list' %}
         <ul>
     {% elif item['type'] == 'link' %}
-        <li><a href="{{create_ref_link(item['content'].flatname)}}">{{ item['content'].name }}</a></li>
+        <li><a href="{{ item['content'].path }}">{{ item['content'].name }}</a></li>
     {% elif item['type'] == 'end-list' %}
         </ul>
     {% elif item['type'] == 'end-category' %}

@@ -7,15 +7,17 @@ from subprocess import call
 import string
 import time
 import shutil
+import yaml
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 # TODO: Refactor
-template_dir = '/home/ist/code/Processing.R-docs/templates'
-output_dir = '/home/ist/code/Processing.R-docs/docs'
-content_dir = '/home/ist/code/Processing.R-docs/content'
+template_dir = 'templates'
+output_dir = 'docs'
+content_dir = 'content'
 
 img_dir = 'img'
+property_dir = '.property.yml'
 
 class Generator(object):
     def __init__(self, root, env, jar):
@@ -32,6 +34,7 @@ class Generator(object):
     def generate(self):
         self.parse_reference()
         self.render_reference_items()
+        self.render_reference_index()
 
     def parse_reference(self):
         for filename in os.listdir(self.reference_dir):
@@ -45,15 +48,128 @@ class Generator(object):
             with open(os.path.join(output_dir, ('%s.html' % item.name)), 'w+') as f:
                 f.write(reference_template.render(item=item))
 
+    def render_reference_index(self):
+        categories = dict()
+        for item in self.reference_items:
+            path = (item.category, item.subcategory)
+            if path == ('', ''): continue
+            # Fields and Methods aren't included in the index
+            if path[1] in ('Method', 'Field'): continue
+            if path not in categories:
+                categories[path] = list()
+            categories[path].append(item)
+        category_order = [
+            ('Structure', ''),
+            ('Environment', ''),
+            ('Data', 'Primitive'),
+            ('Data', 'Composite'),
+            ('Data', 'Conversion'),
+            ('Data', 'Dictionary Methods'),
+            ('Data', 'List Methods'),
+            ('Data', 'String Methods'),
+            ('Data', 'List Functions'),
+            ('Data', 'String Functions'),
+            ('Control', 'Relational Operators'),
+            ('Control', 'Iteration'),
+            ('Control', 'Conditionals'),
+            ('Control', 'Logical Operators'),
+            ('Shape', ''),
+            ('Shape', '2D Primitives'),
+            ('Shape', 'Curves'),
+            ('Shape', '3D Primitives'),
+            ('Shape', 'Attributes'),
+            ('Shape', 'Vertex'),
+            ('Shape', 'Loading & Displaying'),
+            ('Input', 'Mouse'),
+            ('Input', 'Keyboard'),
+            ('Input', 'Files'),
+            ('Input', 'Time & Date'),
+            ('Output', 'Text Area'),
+            ('Output', 'Image'),
+            ('Output', 'Files'),
+            ('Transform', ''),
+            ('Lights, Camera', 'Lights'),
+            ('Lights, Camera', 'Camera'),
+            ('Lights, Camera', 'Coordinates'),
+            ('Lights, Camera', 'Material Properties'),
+            ('Color', 'Setting'),
+            ('Color', 'Creating & Reading'),
+            ('Image', ''),
+            ('Image', 'Loading & Displaying'),
+            ('Image', 'Textures'),
+            ('Image', 'Pixels'),
+            ('Rendering', ''),
+            ('Rendering', 'Shaders'),
+            ('Typography', ''),
+            ('Typography', 'Loading & Displaying'),
+            ('Typography', 'Attributes'),
+            ('Typography', 'Metrics'),
+            ('Math', ''),
+            ('Math', 'Operators'),
+            ('Math', 'Bitwise Operators'),
+            ('Math', 'Calculation'),
+            ('Math', 'Trigonometry'),
+            ('Math', 'Random'),
+            ('Constants', ''),
+        ]
+        # assert set(category_order) == set(categories.keys()), \
+        #         "category order and category keys are different. " + \
+        #         str(set(category_order) - set(categories.keys())) + " *** " + \
+        #         str(set(categories.keys()) - set(category_order))
+        elements = list()
+        current_cat = None
+        current_subcat = None
+        for path in category_order:
+            cat, subcat = path
+            if cat != current_cat:
+                if current_cat is not None:
+                    elements.append({'type': 'end-category', 'content': None})
+                elements.append({'type': 'start-category', 'content': cat})
+                current_cat = cat
+            if subcat != current_subcat:
+                if current_subcat is not None:
+                    elements.append({'type': 'end-subcategory', 'content': None})
+                elements.append({'type': 'start-subcategory', 'content': subcat})
+                current_subcat = subcat
+            elements.append({'type': 'start-list', 'content': None})
+            # For demo.
+            if path not in categories:
+                continue
+            logging.info(path)
+            for item in sorted(categories[path], key=lambda x: x.name):
+                elements.append({'type': 'link', 'content': item})
+            elements.append({'type': 'end-list', 'content': None})
+        elements.append({'type': 'end-subcategory', 'content': None})
+        elements.append({'type': 'end-category', 'content': None})
+
+        index_template = self.env.get_template('reference_index_template.jinja')
+        with open(os.path.join(output_dir, 'index.html'), 'w+') as f:
+            f.write(index_template.render(elements=elements))
+
 class ReferenceItem(object):
     def __init__(self, root, name, jar, output_img_dir):
         self.name = name
+        self.path = '%s.html' % name
         self.jar_path = jar
         self.output_img_dir = output_img_dir
         self.item_dir = os.path.join(root, name)
         self.examples = []
+
+        self.parse_reference_item()
+        self.parse_categary()
+    
+    def parse_categary(self):
+        with open(os.path.join(self.item_dir, property_dir)) as f:
+            raw_yaml_doc = f.read()
+            yaml_obj = yaml.load(raw_yaml_doc)
+            self.category = yaml_obj['category']
+            self.subcategory = yaml_obj['subcategory']
+        
+    def parse_reference_item(self):
         for filename in os.listdir(self.item_dir):
             sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
+            if os.path.isfile(os.path.join(self.item_dir, filename)):
+                continue
             with open(sketchFile, 'r') as f:
                 code = f.read()
                 img_path = os.path.join(self.output_img_dir, ('%s.png' % filename))
@@ -94,7 +210,8 @@ class ReferenceItem(object):
 @click.option('--jar', default='', help='The location of runner.jar')
 def generate(core, jar):
     '''Generate Processing.R web reference.'''
-    if core is '' or jar is '':
+    # BUG: Fail to exit.
+    if core is None or jar is None:
         click.echo('There is no core or jar.')
         exit(1)
     click.echo('The location of Processing.R source code:%s' % core)

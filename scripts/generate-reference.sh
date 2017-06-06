@@ -6,5 +6,5 @@ cd ${ROOT}
 rm -rf docs
 mkdir -p docs/img
 cp -r content/* docs/
-exec python ./src/generate.py $@
+exec python3 ./src/generate.py $@
 cd - > /dev/null
