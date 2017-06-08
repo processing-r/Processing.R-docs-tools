@@ -40,28 +40,40 @@
 
             <tr class=""><th scope="row">Examples</th><td>
                     <div class="example">                 <img src="img/arc2.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
+                <pre class='margin'># arc 2 https://processing.org/reference/arc_.html
 
-# TODO: Fix double to int cast.
-arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(OPEN))
+# TODO: replace with built-in constants
+PI &lt;- 3.1415
+QUARTER_PI &lt;- PI/4
+
+# TODO: Fix double to int casts
+OPEN &lt;- as.integer(1)
+CHORD &lt;- as.integer(2)
+PIE &lt;- as.integer(3)
+
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, OPEN)
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc3.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
+                <pre class='margin'># arc 3 https://processing.org/reference/arc_.html
 
-arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(CHORD))
+# TODO: replace with built-in constants
+PI &lt;- 3.1415
+QUARTER_PI &lt;- PI/4
+
+# TODO: Fix double to int casts
+OPEN &lt;- as.integer(1)
+CHORD &lt;- as.integer(2)
+PIE &lt;- as.integer(3)
+
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, CHORD)
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc1.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
+                <pre class='margin'># arc 1 https://processing.org/reference/arc_.html
+
+# TODO: replace with built-in constants
+PI &lt;- 3.1415
 HALF_PI &lt;- PI/2
 QUARTER_PI &lt;- PI/4
 TWO_PI &lt;- PI * 2
@@ -74,13 +86,20 @@ arc(50, 55, 80, 80, PI + QUARTER_PI, TWO_PI)
 </pre>
             </div>
                                 <div class="example">                 <img src="img/arc4.png"/>
-                <pre class='margin'>PI &lt;- 3.1415
-QUARTER_PI &lt;- PI/4
-OPEN &lt;- 1
-CHORD &lt;- 2
-PIE &lt;- 3
+                <pre class='margin'># arc 4 https://processing.org/reference/arc_.html
 
-arc(50, 50, 80, 80, 0, PI + QUARTER_PI, as.integer(PIE))
+# TODO: replace with built-in constants
+PI &lt;- 3.1415
+HALF_PI &lt;- PI/2
+QUARTER_PI &lt;- PI/4
+TWO_PI &lt;- PI * 2
+
+# TODO: Fix double to int casts
+OPEN &lt;- as.integer(1)
+CHORD &lt;- as.integer(2)
+PIE &lt;- as.integer(3)
+
+arc(50, 50, 80, 80, 0, PI + QUARTER_PI, PIE)
 </pre>
             </div>
                             </tr>
@@ -114,7 +133,7 @@ arc(<c>a</c>, <c>b</c>, <c>c</c>, <c>d</c>, <c>start</c>, <c>stop</c>, <c>mode</
                     <a class="code" href="./degrees.html">degrees</a><br />
             </table>
 
-Updated on Thu Jun  8 15:06:38 2017.
+Updated on Thu Jun  8 15:38:21 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

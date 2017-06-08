@@ -38,6 +38,61 @@
         <td><h3>bezierTangent</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/bezierTangent2.png"/>
+                <pre class='margin'># bezierTangent 2 https://processing.org/reference/bezierTangent_.html
+
+PI &lt;- 3.1415
+HALF_PI &lt;- PI/2
+QUARTER_PI &lt;- PI/4
+TWO_PI &lt;- PI * 2
+
+noFill()
+bezier(85, 20, 10, 10, 90, 90, 15, 80)
+stroke(255, 102, 0)
+steps &lt;- 16
+for (i in 0:steps) {
+    t &lt;- i/steps
+    x &lt;- bezierPoint(85, 10, 90, 15, t)
+    y &lt;- bezierPoint(20, 10, 90, 80, t)
+    tx &lt;- bezierTangent(85, 10, 90, 15, t)
+    ty &lt;- bezierTangent(20, 10, 90, 80, t)
+    a &lt;- atan2(ty, tx)
+    a &lt;- a - HALF_PI
+    line(x, y, cos(a) * 8 + x, sin(a) * 8 + y)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/bezierTangent1.png"/>
+                <pre class='margin'># bezierTangent 1 https://processing.org/reference/bezierTangent_.html
+
+PI &lt;- 3.1415
+
+noFill()
+bezier(85, 20, 10, 10, 90, 90, 15, 80)
+steps &lt;- 6
+fill(255)
+for (i in 0:steps) {
+    t &lt;- i/steps
+    # Get the location of the point
+    x &lt;- bezierPoint(85, 10, 90, 15, t)
+    y &lt;- bezierPoint(20, 10, 90, 80, t)
+    # Get the tangent points
+    tx &lt;- bezierTangent(85, 10, 90, 15, t)
+    ty &lt;- bezierTangent(20, 10, 90, 80, t)
+    # Calculate an angle from the tangent points
+    a &lt;- atan2(ty, tx)
+    a = a + PI
+    stroke(255, 102, 0)
+    line(x, y, cos(a) * 30 + x, sin(a) * 30 + y)
+    # The following line of code makes a line inverse of the above line line(x, y,
+    # cos(a)*-30 + x, sin(a)*-30 + y)
+    stroke(0)
+    ellipse(x, y, 5, 5)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -65,7 +120,7 @@
                     <a class="code" href="./curvePoint.html">curvePoint</a><br />
             </table>
 
-Updated on Thu Jun  8 15:06:38 2017.
+Updated on Thu Jun  8 15:38:21 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

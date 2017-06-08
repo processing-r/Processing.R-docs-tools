@@ -38,6 +38,31 @@
         <td><h3>curvePoint</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/curvePoint1x.png"/>
+                <pre class='margin'>## Fails due to ellipseMode()
+
+CENTER &lt;- 3
+
+processing$noFill()
+processing$curve(5, 26, 5, 26, 73, 24, 73, 61)
+processing$curve(5, 26, 73, 24, 73, 61, 15, 65)
+processing$fill(255)
+processing$ellipseMode(CENTER)
+
+steps &lt;- 6
+for (i in 0:steps) {
+    t &lt;- i/steps
+    x &lt;- processing$curvePoint(5, 5, 73, 73, t)
+    y &lt;- processing$curvePoint(26, 26, 24, 61, t)
+    processing$ellipse(x, y, 5, 5)
+    x &lt;- processing$curvePoint(5, 73, 73, 15, t)
+    y &lt;- processing$curvePoint(26, 24, 61, 65, t)
+    processing$ellipse(x, y, 5, 5)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -65,7 +90,7 @@
                     <a class="code" href="./bezierPoint.html">bezierPoint</a><br />
             </table>
 
-Updated on Thu Jun  8 15:06:38 2017.
+Updated on Thu Jun  8 15:38:21 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">
