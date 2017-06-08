@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>perspective \ Language (API)</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Author" content="Ce Gao" />
+        <meta name="Publisher" content="Processing" />
+        <meta name="Keywords" content="Processing, Processing, Interactive Media, Electronic Arts, Programming, gaocegege, R Language" />
+        <meta name="Description" content="R Language Mode for Processing extends the Processing Development Environment with the R Language." />
+        <script src="javascript/modernizr-2.6.2.touch.js" type="text/javascript"></script>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body id="Langauge-en" onload="" >
+        <div id="container">
+                        <div id="header">
+                <a href="/" title="Back to R Language Mode" class="processing-logo no-cover"></a>
+            </div>
+            <a id="TOP" name="TOP"></a>
+            
+            
+            <div id="navigation">
+                <div class="navBar" id="mainnav">
+                    <a href="/">Cover</a><br/>
+                    <a href="/reference/">Reference</a><br/>
+                    <a href="/tutorials/">Tutorials</a><br/>
+                    <a href="/examples/">Examples</a><br/>
+                    <a href="https://github.com/gaocegege/Processing.R/issues">Bugs</a>
+                </div>
+            </div>
+            
+
+            <div class="content">
+
+                <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+    <tr class="name-row">
+        <th scope="row">Name</th>
+        <td><h3>perspective</h3></td>
+    </tr>
+
+    
+    <tr class="">
+        <th scope="row">Description</th>
+        <td>
+             Sets a perspective projection applying foreshortening, making distant objects appear smaller than closer ones. The parameters define a viewing volume with the shape of truncated pyramid. Objects near to the front of the volume appear their actual size, while farther objects appear smaller. This projection simulates the perspective of the world more accurately than orthographic projection. The version of perspective without parameters sets the default perspective and the version with four parameters allows the programmer to set the area precisely. The default values are: perspective(PI/3.0, width/height, cameraZ/10.0, cameraZ*10.0) where cameraZ is ((height/2.0) / tan(PI*60.0/360.0)); 
+        </td>
+    </tr>
+
+             <tr class=""><th scope="row">Syntax</th><td><pre>perspective()
+perspective(<c>fovy</c>, <c>aspect</c>, <c>zNear</c>, <c>zFar</c>)</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">fovy</th><td>float: field-of-view angle (in radians) for vertical direction</td></tr>
+                    <tr class=""><th scope="row" class="code">aspect</th><td>float: ratio of width to height</td></tr>
+                    <tr class=""><th scope="row" class="code">zNear</th><td>float: z-position of nearest clipping plane</td></tr>
+                    <tr class=""><th scope="row" class="code">zFar</th><td>float: z-position of farthest clipping plane</td></tr>
+                </table></tr>
+    
+    
+    
+    
+    </table>
+
+Updated on Thu Jun  8 15:06:38 2017.
+
+                <!-- Creative Commons License -->
+                <div class="license">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border: none" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                </div>
+
+            </div>
+
+            <div id="footer">
+                <div id="copyright">Processing is an open project intiated by <a href="http://benfry.com/">Ben Fry</a> and <a href="http://reas.com">Casey Reas</a>. It is developed by a <a href="http://processing.org/about/people/">small team of volunteers</a>.</div>
+                <div id="colophon">
+                    <a href="/copyright.html">© Info</a> 
+                    <span>Site hosted by <a href="http://www.mediatemple.net">Media Temple</a>.</span>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="javascript/jquery-1.9.1.min.js"><\/script>');</script>
+        <script src="javascript/site.js" type="text/javascript"></script>
+    </body>
+</html>

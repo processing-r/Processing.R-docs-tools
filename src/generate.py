@@ -155,7 +155,9 @@ class ReferenceItem(object):
         self.parse_property()
     
     def parse_property(self):
-        with open(os.path.join(self.item_dir, property_dir)) as f:
+        file_name = os.path.join(self.item_dir, property_dir)
+        print(file_name)
+        with open(file_name) as f:
             raw_yaml_doc = f.read()
             yaml_obj = yaml.load(raw_yaml_doc)
             self.category = yaml_obj['category']
