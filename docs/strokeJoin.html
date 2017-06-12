@@ -38,6 +38,47 @@
         <td><h3>strokeJoin</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/strokeJoin0.png"/>
+                <pre class='margin'>MITER &lt;- bitwShiftL(1, 3)
+
+noFill()
+strokeWeight(10)
+strokeJoin(MITER)
+beginShape()
+vertex(35, 20)
+vertex(65, 50)
+vertex(35, 80)
+endShape()
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/strokeJoin1.png"/>
+                <pre class='margin'>BEVEL &lt;- bitwShiftL(1, 5)
+
+noFill()
+strokeWeight(10)
+strokeJoin(BEVEL)
+beginShape()
+vertex(35, 20)
+vertex(65, 50)
+vertex(35, 80)
+endShape()
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/strokeJoin2.png"/>
+                <pre class='margin'>ROUND &lt;- bitwShiftL(1, 1)
+
+noFill()
+strokeWeight(10)
+strokeJoin(ROUND)
+beginShape()
+vertex(35, 20)
+vertex(65, 50)
+vertex(35, 80)
+endShape()
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -61,7 +102,7 @@
                     <a class="code" href="./strokeCap.html">strokeCap</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

@@ -39,26 +39,26 @@
     </tr>
 
             <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="img/curvePoint1x.png"/>
-                <pre class='margin'>## Fails due to ellipseMode()
+                    <div class="example">                 <img src="img/curvePoint1.png"/>
+                <pre class='margin'># curvePoint 1 https://processing.org/reference/curvePoint_.html
 
 CENTER &lt;- as.integer(3)
 
-processing$noFill()
-processing$curve(5, 26, 5, 26, 73, 24, 73, 61)
-processing$curve(5, 26, 73, 24, 73, 61, 15, 65)
-processing$fill(255)
-processing$ellipseMode(CENTER)
+noFill()
+curve(5, 26, 5, 26, 73, 24, 73, 61)
+curve(5, 26, 73, 24, 73, 61, 15, 65)
+fill(255)
+ellipseMode(CENTER)
 
 steps &lt;- 6
 for (i in 0:steps) {
     t &lt;- i/steps
-    x &lt;- processing$curvePoint(5, 5, 73, 73, t)
-    y &lt;- processing$curvePoint(26, 26, 24, 61, t)
-    processing$ellipse(x, y, 5, 5)
-    x &lt;- processing$curvePoint(5, 73, 73, 15, t)
-    y &lt;- processing$curvePoint(26, 24, 61, 65, t)
-    processing$ellipse(x, y, 5, 5)
+    x &lt;- curvePoint(5, 5, 73, 73, t)
+    y &lt;- curvePoint(26, 26, 24, 61, t)
+    ellipse(x, y, 5, 5)
+    x &lt;- curvePoint(5, 73, 73, 15, t)
+    y &lt;- curvePoint(26, 24, 61, 65, t)
+    ellipse(x, y, 5, 5)
 }
 </pre>
             </div>
@@ -90,7 +90,7 @@ for (i in 0:steps) {
                     <a class="code" href="./bezierPoint.html">bezierPoint</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

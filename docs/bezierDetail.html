@@ -38,30 +38,6 @@
         <td><h3>bezierDetail</h3></td>
     </tr>
 
-            <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="img/bezierDetail1x.png"/>
-                <pre class='margin'># Fails due to mouseX Fails due to bezierDetail()
-
-P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
-
-settings &lt;- function() {
-    processing$size(100, 100, P3D)
-}
-
-setup &lt;- function() {
-    processing$noFill()
-    processing$noLoop()
-}
-
-draw &lt;- function() {
-    processing$background(204)
-    d &lt;- processing$map(processing$mouseX, 0, 100, 1, 20)
-    processing$bezierDetail(d)
-    processing$bezier(85, 20, 10, 10, 90, 90, 15, 80)
-}
-</pre>
-            </div>
-                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -85,7 +61,7 @@ draw &lt;- function() {
                     <a class="code" href="./curveTightness.html">curveTightness</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

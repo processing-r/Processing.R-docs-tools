@@ -38,6 +38,37 @@
         <td><h3>vertex</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/vertex0.png"/>
+                <pre class='margin'>POINTS &lt;- as.integer(3)
+
+beginShape(POINTS)
+vertex(30, 20)
+vertex(85, 20)
+vertex(85, 75)
+vertex(30, 75)
+endShape()
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/vertex1.png"/>
+                <pre class='margin'>POINTS &lt;- as.integer(3)
+P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    beginShape(POINTS)
+    vertex(30, 20, -50)
+    vertex(85, 20, -50)
+    vertex(85, 75, -50)
+    vertex(30, 75, -50)
+    endShape()
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -61,7 +92,7 @@
                     <a class="code" href="./texture.html">texture</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

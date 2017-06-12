@@ -38,6 +38,30 @@
         <td><h3>endContour</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/endContour0.png"/>
+                <pre class='margin'>CLOSE &lt;- as.integer(2)
+
+size(100, 100)
+translate(50, 50)
+stroke(255, 0, 0)
+beginShape()
+# Exterior part of shape, clockwise winding
+vertex(-40, -40)
+vertex(40, -40)
+vertex(40, 40)
+vertex(-40, 40)
+# Interior part of shape, counter-clockwise winding
+beginContour()
+vertex(-20, -20)
+vertex(-20, 20)
+vertex(20, 20)
+vertex(20, -20)
+endContour()
+endShape(CLOSE)
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -55,7 +79,7 @@
     
     </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

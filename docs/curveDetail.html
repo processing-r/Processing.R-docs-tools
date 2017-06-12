@@ -38,39 +38,6 @@
         <td><h3>curveDetail</h3></td>
     </tr>
 
-            <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="img/curveDetail1x.png"/>
-                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
-
-settings &lt;- function() {
-    processing$size(100, 100, P3D)
-}
-
-setup &lt;- function() {
-    processing$noLoop()
-    processing$noFill()
-}
-
-draw &lt;- function() {
-    # processing$curveDetail(1) ERROR: curveDetail not working
-    
-    drawCurves(-15)
-    processing$stroke(126)
-    # processing$curveDetail(2)
-    drawCurves(0)
-    processing$stroke(255)
-    # processing$curveDetail(4)
-    drawCurves(15)
-}
-
-drawCurves &lt;- function(y) {
-    processing$curve(5, 28 + y, 5, 28 + y, 73, 26 + y, 73, 63 + y)
-    processing$curve(5, 28 + y, 73, 26 + y, 73, 63 + y, 15, 67 + y)
-    processing$curve(73, 26 + y, 73, 63 + y, 15, 67 + y, 15, 67 + y)
-}
-</pre>
-            </div>
-                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -94,7 +61,7 @@ drawCurves &lt;- function(y) {
                     <a class="code" href="./curveTightness.html">curveTightness</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

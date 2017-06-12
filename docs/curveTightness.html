@@ -39,43 +39,45 @@
     </tr>
 
             <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="img/curveTightness1x.png"/>
-                <pre class='margin'># Fails on mouseX Alternate demonstration of curveTightness works fine
+                    <div class="example">                 <img src="img/curveTightness1.png"/>
+                <pre class='margin'># curveTightness 1x -- original fails on map, mouseX
+# https://processing.org/reference/curveTightness_.html
 
 P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
 
 settings &lt;- function() {
-    processing$size(100, 100, P3D)
+    size(100, 100, P3D)
 }
 
 setup &lt;- function() {
-    processing$noFill()
+    noFill()
+    noLoop()
 }
 
 draw &lt;- function() {
-    processing$background(204)
-    # t &lt;- processing$map(processing$mouseX, 0, width, -5, 5) ERROR: mouseX
-    # processing$curveTightness(t)
+    # t &lt;- map(50, 0, width, -5, 5)
+    background(204)
+    # curveTightness(t)
     
     mycurve(-1)
-    processing$translate(0, 10)
+    translate(0, 10)
     mycurve(0)
-    processing$translate(0, 10)
+    translate(0, 10)
     mycurve(1)
-    processing$translate(0, 10)
+    translate(0, 10)
     mycurve(2)
 }
 
 mycurve &lt;- function(tightness) {
-    processing$curveTightness(tightness)
-    processing$beginShape()
-    processing$curveVertex(10, 26)
-    processing$curveVertex(10, 26)
-    processing$curveVertex(83, 24)
-    processing$curveVertex(83, 61)
-    processing$curveVertex(25, 65)
-    processing$curveVertex(25, 65)
-    processing$endShape()
+    curveTightness(tightness)
+    beginShape()
+    curveVertex(10, 26)
+    curveVertex(10, 26)
+    curveVertex(83, 24)
+    curveVertex(83, 61)
+    curveVertex(25, 65)
+    curveVertex(25, 65)
+    endShape()
 }
 </pre>
             </div>
@@ -102,7 +104,7 @@ mycurve &lt;- function(tightness) {
                     <a class="code" href="./curveVertex.html">curveVertex</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

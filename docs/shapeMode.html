@@ -38,6 +38,25 @@
         <td><h3>shapeMode</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/shapeMode0.png"/>
+                <pre class='margin'>CENTER &lt;- as.integer(3)
+CORNER &lt;- as.integer(0)
+
+setup &lt;- function() {
+    size(100, 100)
+    bot = loadShape(&#34;https://raw.githubusercontent.com/processing/processing-docs/master/content/examples/Basics/Shape/LoadDisplaySVG/data/bot1.svg&#34;)
+}
+
+draw &lt;- function() {
+    shapeMode(CENTER)
+    shape(bot, 35, 35, 50, 50)
+    shapeMode(CORNER)
+    shape(bot, 35, 35, 50, 50)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -61,7 +80,7 @@
                     <a class="code" href="./rectMode.html">rectMode</a><br />
             </table>
 
-Updated on Thu Jun  8 15:43:16 2017.
+Updated on Mon Jun 12 14:41:22 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">
