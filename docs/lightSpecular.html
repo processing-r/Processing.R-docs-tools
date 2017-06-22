@@ -38,6 +38,31 @@
         <td><h3>lightSpecular</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/lightSpecular0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    directionalLight(102, 102, 102, 0, 0, -1)
+    lightSpecular(204, 204, 204)
+    directionalLight(102, 102, 102, 0, 1, -1)
+    lightSpecular(102, 102, 102)
+    translate(20, 50, 0)
+    specular(51, 51, 51)
+    sphere(30)
+    translate(60, 0, 0)
+    specular(102, 102, 102)
+    sphere(30)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -65,7 +90,7 @@
                     <a class="code" href="./spotLight.html">spotLight</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

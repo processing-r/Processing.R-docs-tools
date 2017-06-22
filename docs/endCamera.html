@@ -38,6 +38,30 @@
         <td><h3>endCamera</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/endCamera0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    noFill()
+    
+    beginCamera()
+    camera()
+    rotateX(-PI/6)
+    endCamera()
+    
+    translate(50, 50, 0)
+    rotateY(PI/3)
+    box(45)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -56,7 +80,7 @@
                     <a class="code" href="./camera.html">camera</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

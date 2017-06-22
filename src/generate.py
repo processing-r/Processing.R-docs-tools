@@ -48,6 +48,10 @@ class Generator(object):
         categories = dict()
         for item in self.reference_items:
             path = (item.category, item.subcategory)
+            # print(item.category, item.category)
+            if item.category is '':
+                # print(item.category)
+                path = (item.category, '')
             if path == ('', ''): continue
             # Fields and Methods aren't included in the index
             if path[1] in ('Method', 'Field'): continue
@@ -131,7 +135,6 @@ class Generator(object):
             # For demo.
             if path not in categories:
                 continue
-            logging.info(path)
             for item in sorted(categories[path], key=lambda x: x.name):
                 elements.append({'type': 'link', 'content': item})
             elements.append({'type': 'end-list', 'content': None})
@@ -156,13 +159,15 @@ class ReferenceItem(object):
     
     def parse_property(self):
         file_name = os.path.join(self.item_dir, property_dir)
-        print(file_name)
         with open(file_name) as f:
             raw_yaml_doc = f.read()
             yaml_obj = yaml.load(raw_yaml_doc)
             self.category = yaml_obj['category']
             if 'subcategory' in yaml_obj:
-                self.subcategory = yaml_obj['subcategory']
+                if yaml_obj['subcategory'] is None:
+                    self.subcategory = ''
+                else:
+                    self.subcategory = yaml_obj['subcategory']
             if 'description' in yaml_obj:
                 self.description = yaml_obj['description']
             if 'syntax' in yaml_obj:

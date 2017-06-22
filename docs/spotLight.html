@@ -38,6 +38,44 @@
         <td><h3>spotLight</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/spotLight0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    spotLight(51, 102, 126, 80, 20, 40, -1, 0, 0, PI/2, 2)
+    translate(20, 50, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/spotLight1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    concentration = 600  # Try 1 -&gt; 10000
+    background(0)
+    noStroke()
+    spotLight(51, 102, 126, 50, 50, 400, 0, 0, -1, PI/16, concentration)
+    translate(80, 50, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -69,7 +107,7 @@
                     <a class="code" href="./ambientLight.html">ambientLight</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

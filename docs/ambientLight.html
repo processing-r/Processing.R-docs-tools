@@ -38,6 +38,48 @@
         <td><h3>ambientLight</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/ambientLight1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    directionalLight(126, 126, 126, 0, 0, -1)
+    ambientLight(102, 102, 102)
+    translate(32, 50, 0)
+    rotateY(PI/5)
+    box(40)
+    translate(60, 0, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/ambientLight0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    # The spheres are white by default so the ambient light changes their color
+    ambientLight(51, 102, 126)
+    translate(20, 50, 0)
+    sphere(30)
+    translate(60, 0, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -68,7 +110,7 @@ ambientLight(<c>v1</c>, <c>v2</c>, <c>v3</c>, <c>x</c>, <c>y</c>, <c>z</c>)</pre
                     <a class="code" href="./spotLight.html">spotLight</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

@@ -38,6 +38,35 @@
         <td><h3>translate</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/translate2.png"/>
+                <pre class='margin'>rect(0, 0, 55, 55)  # Draw rect at original 0,0
+translate(30, 20)
+rect(0, 0, 55, 55)  # Draw rect at new 0,0
+translate(14, 14)
+rect(0, 0, 55, 55)  # Draw rect at new 0,0
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/translate1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    # Translate 30 across, 20 down, and 50 back, or &#39;away&#39; from the screen.
+    translate(30, 20, -50)
+    rect(0, 0, 55, 55)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/translate0.png"/>
+                <pre class='margin'>translate(30, 20)
+rect(0, 0, 55, 55)
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -46,7 +75,8 @@
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>translate(x, y)
+translate(x, y, z)</pre></td></tr>
     
     
     
@@ -62,7 +92,7 @@
                     <a class="code" href="./scale.html">scale</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

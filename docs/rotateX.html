@@ -38,6 +38,39 @@
         <td><h3>rotateX</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/rotateX0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    translate(width/2, height/2)
+    rotateX(PI/3)
+    rect(-26, -26, 52, 52)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/rotateX1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+PI &lt;- pi
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+# Not work, no radians
+draw &lt;- function() {
+    translate(width/2, height/2)
+    rotateX(radians(60))
+    rect(-26, -26, 52, 52)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -65,7 +98,7 @@
                     <a class="code" href="./translate.html">translate</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

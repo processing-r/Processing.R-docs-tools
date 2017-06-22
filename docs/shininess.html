@@ -38,6 +38,33 @@
         <td><h3>shininess</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/shininess0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    background(0)
+    fill(0, 51, 102)
+    ambientLight(102, 102, 102)
+    lightSpecular(204, 204, 204)
+    directionalLight(102, 102, 102, 0, 0, -1)
+    specular(255, 255, 255)
+    translate(30, 50, 0)
+    shininess(1)
+    sphere(20)  # Left sphere
+    translate(40, 0, 0)
+    shininess(5)
+    sphere(20)  # Right sphere
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -61,7 +88,7 @@
                     <a class="code" href="./specular.html">specular</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">

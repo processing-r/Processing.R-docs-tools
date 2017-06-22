@@ -38,6 +38,49 @@
         <td><h3>lights</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/lights1.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+setup &lt;- function() {
+    background(0)
+    noStroke()
+}
+
+draw &lt;- function() {
+    # Sets the default ambient and directional light
+    lights()
+    translate(20, 50, 0)
+    sphere(30)
+    translate(60, 0, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/lights0.png"/>
+                <pre class='margin'>P3D &lt;- &#34;processing.opengl.PGraphics3D&#34;
+
+settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+draw &lt;- function() {
+    background(0)
+    noStroke()
+    # Sets the default ambient and directional light
+    lights()
+    translate(20, 50, 0)
+    sphere(30)
+    translate(60, 0, 0)
+    sphere(30)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
@@ -59,7 +102,7 @@
                     <a class="code" href="./spotLight.html">spotLight</a><br />
             </table>
 
-Updated on Mon Jun 12 14:41:22 2017.
+Updated on Thu Jun 22 12:43:16 2017.
 
                 <!-- Creative Commons License -->
                 <div class="license">
