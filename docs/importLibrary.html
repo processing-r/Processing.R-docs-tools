@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>mousePressed_var \ Language (API)</title>
+        <title>importLibrary \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,36 +35,55 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>mousePressed_var</h3></td>
+        <td><h3>importLibrary</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/importLibrary0.png"/>
+                <pre class='margin'>settings &lt;- function() {
+    importLibrary(&#34;peasycam&#34;)
+    size(200, 200, P3D)
+}
+
+setup &lt;- function() {
+    cam = PeasyCam$new(processing, 100)
+    cam$setMinimumDistance(50)
+    cam$setMaximumDistance(500)
+}
+
+draw &lt;- function() {
+    rotateX(-0.5)
+    rotateY(-0.5)
+    background(0)
+    fill(255, 0, 0)
+    box(30)
+    pushMatrix()
+    translate(0, 0, 20)
+    fill(0, 0, 255)
+    box(5)
+    popMatrix()
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             The <b>mousePressed</b> variable stores whether or not a mouse button is currently being pressed. The value is True when <i>any</i> mouse button is pressed, and False if no button is pressed. The <b>mouseButton</b> variable (see the related reference entry) can be used to determine which button has been pressed. 
+             Import Processing libraries. 
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>	importLibrary(<c>library</c>)</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">library</th><td>The name of the library.</td></tr>
+                </table></tr>
     
     
     
     
-    
-        <tr><th scope="row">Related</th><td class="code">
-                    <a class="code" href="./mouseX.html">mouseX</a><br />
-                    <a class="code" href="./mouseY.html">mouseY</a><br />
-                    <a class="code" href="./pmouseX.html">pmouseX</a><br />
-                    <a class="code" href="./pmouseY.html">pmouseY</a><br />
-                    <a class="code" href="./mousePressed.html">mousePressed</a><br />
-                    <a class="code" href="./mouseReleased.html">mouseReleased</a><br />
-                    <a class="code" href="./mouseClicked.html">mouseClicked</a><br />
-                    <a class="code" href="./mouseMoved.html">mouseMoved</a><br />
-                    <a class="code" href="./mouseDragged.html">mouseDragged</a><br />
-                    <a class="code" href="./mouseButton.html">mouseButton</a><br />
-                    <a class="code" href="./mouseWheel.html">mouseWheel</a><br />
-            </table>
+    </table>
 
 
                 <!-- Creative Commons License -->

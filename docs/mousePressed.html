@@ -38,6 +38,40 @@
         <td><h3>mousePressed</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/mousePressed1.png"/>
+                <pre class='margin'># Click within the image to change the value of the rectangle
+
+value &lt;- 0
+
+draw &lt;- function() {
+    fill(value)
+    rect(25, 25, 50, 50)
+}
+
+mousePressed &lt;- function() {
+    if (value == 0) {
+        value &lt;- 255
+    } else {
+        value &lt;- 0
+    }
+}
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/mousePressed0.png"/>
+                <pre class='margin'># Click within the image to change the value of the rectangle
+
+draw &lt;- function() {
+    if (mousePressed == TRUE) {
+        fill(0)
+    } else {
+        fill(255)
+    }
+    rect(25, 25, 50, 50)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

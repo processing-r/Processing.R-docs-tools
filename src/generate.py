@@ -186,6 +186,7 @@ class ReferenceItem(object):
             if os.path.isfile(os.path.join(self.item_dir, filename)):
                 continue
             with open(sketchFile, 'r') as f:
+                print("Interpreting " + sketchFile)
                 code = f.read()
                 img_path = os.path.join(self.output_img_dir, ('%s.png' % filename))
                 self.generate_image(code, img_path)
