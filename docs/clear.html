@@ -38,6 +38,35 @@
         <td><h3>clear</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre>pg &lt;- NULL
+
+settings &lt;- function() {
+    size(200, 200)
+}
+
+setup &lt;- function() {
+    pg &lt;- createGraphics(100, 100)
+}
+
+draw &lt;- function() {
+    background(204)
+    pg$beginDraw()
+    pg$stroke(0, 102, 153)
+    pg$line(0, 0, mouseX, mouseY)
+    pg$endDraw()
+    image(pg, 50, 50)
+}
+
+# Click to clear the PGraphics object
+mousePressed &lt;- function() {
+    pg$beginDraw()
+    pg$clear()
+    pg$endDraw()
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

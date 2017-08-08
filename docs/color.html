@@ -38,6 +38,42 @@
         <td><h3>color</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/color1.png"/>
+                <pre class='margin'>c = color(255, 204, 0)  # Define color &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+noStroke()  # Don&#39;t draw a stroke around shapes
+rect(30, 20, 55, 55)  # Draw rectangle
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/color2.png"/>
+                <pre class='margin'>c = color(255, 204, 0)  # Define color &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+noStroke()  # Don&#39;t draw a stroke around shapes
+ellipse(25, 25, 80, 80)  # Draw left circle
+
+# Using only one value with color() generates a grayscale value.
+c = color(65)  # Update &#39;c&#39; with grayscale value
+fill(c)  # Use updated &#39;c&#39; as fill color
+ellipse(75, 75, 80, 80)  # Draw right circle
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/color3.png"/>
+                <pre class='margin'>noStroke()  # Don&#39;t draw a stroke around shapes
+
+# If no colorMode is specified, then the default of RGB with scale of 0-255 is
+# used.
+c = color(50, 55, 100)  # Create a color for &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+rect(0, 10, 45, 80)  # Draw left rect
+
+colorMode(HSB, 100)  # Use HSB with scale of 0-100
+c = color(50, 55, 100)  # Update &#39;c&#39; with new color
+fill(c)  # Use updated &#39;c&#39; as fill color
+rect(55, 10, 45, 80)  # Draw right rect
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
