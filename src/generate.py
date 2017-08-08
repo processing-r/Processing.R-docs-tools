@@ -61,11 +61,7 @@ class Generator(object):
         category_order = [
             ('Structure', ''),
             ('Environment', ''),
-            ('Data', 'Conversion'),
-            ('Control', 'Relational Operators'),
-            ('Control', 'Iteration'),
-            ('Control', 'Conditionals'),
-            ('Control', 'Logical Operators'),
+            ('Control', ''),
             ('Shape', ''),
             ('Shape', '2D Primitives'),
             ('Shape', 'Curves'),
@@ -182,8 +178,11 @@ class ReferenceItem(object):
 
     def parse_reference_item(self):
         for filename in os.listdir(self.item_dir):
-            sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
             if os.path.isfile(os.path.join(self.item_dir, filename)):
+                continue
+            sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
+            testConfigFile = '%s/%s/.test.yml' % (self.item_dir, filename)
+            if os.path.isfile(testConfigFile) is not True:
                 continue
             with open(sketchFile, 'r') as f:
                 print("Interpreting " + sketchFile)
