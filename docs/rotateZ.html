@@ -51,6 +51,18 @@ draw &lt;- function() {
 }
 </pre>
             </div>
+                                <div class="example">                <pre>settings &lt;- function() {
+    size(100, 100, P3D)
+}
+
+# Not work, no radians
+draw &lt;- function() {
+    translate(width/2, height/2)
+    rotateZ(radians(60))
+    rect(-26, -26, 52, 52)
+}
+</pre>
+            </div>
                             </tr>
     
     <tr class="">

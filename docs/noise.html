@@ -38,6 +38,19 @@
         <td><h3>noise</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre># noise 1 https://processing.org/reference/noise_.html
+
+xoff &lt;- 0
+draw &lt;- function() {
+    background(204)
+    xoff = xoff + 0.01
+    n &lt;- noise(xoff) * width
+    line(n, 0, n, height)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

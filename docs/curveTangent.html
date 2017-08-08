@@ -38,6 +38,26 @@
         <td><h3>curveTangent</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre># curveTangent 1 https://processing.org/reference/curveTangent_.html
+
+noFill()
+curve(5, 26, 73, 24, 73, 61, 15, 65)
+steps &lt;- 6
+for (i in 0:steps) {
+    t &lt;- i/steps
+    x &lt;- curvePoint(5, 73, 73, 15, t)
+    y &lt;- curvePoint(26, 24, 61, 65, t)
+    # ellipse(x, y, 5, 5)
+    tx &lt;- curveTangent(5, 73, 73, 15, t)
+    ty &lt;- curveTangent(26, 24, 61, 65, t)
+    a &lt;- atan2(ty, tx)
+    a = a - HALF_PI
+    line(x, y, cos(a) * 8 + x, sin(a) * 8 + y)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

@@ -38,6 +38,26 @@
         <td><h3>mouseDragged</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre># Drag (click and hold) your mouse across the image to change the value of the
+# rectangle
+
+value &lt;- 0
+
+draw &lt;- function() {
+    fill(value)
+    rect(25, 25, 50, 50)
+}
+
+mouseDragged &lt;- function() {
+    value = value + 5
+    if (value &gt; 255) {
+        value = 0
+    }
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

@@ -38,6 +38,17 @@
         <td><h3>controlflow</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre>for(i in 1:5) print(1:i)
+for(n in c(2,5,10,20,50)) {
+   x &lt;- stats::rnorm(n)
+   cat(n, &#34;: &#34;, sum(x^2), &#34;\n&#34;, sep = &#34;&#34;)
+}
+f &lt;- factor(sample(letters[1:5], 10, replace = TRUE))
+for(i in unique(f)) print(i)
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

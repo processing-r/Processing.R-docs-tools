@@ -38,6 +38,28 @@
         <td><h3>curvePoint</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre># curvePoint 1 https://processing.org/reference/curvePoint_.html
+
+noFill()
+curve(5, 26, 5, 26, 73, 24, 73, 61)
+curve(5, 26, 73, 24, 73, 61, 15, 65)
+fill(255)
+ellipseMode(CENTER)
+
+steps &lt;- 6
+for (i in 0:steps) {
+    t &lt;- i/steps
+    x &lt;- curvePoint(5, 5, 73, 73, t)
+    y &lt;- curvePoint(26, 26, 24, 61, t)
+    ellipse(x, y, 5, 5)
+    x &lt;- curvePoint(5, 73, 73, 15, t)
+    y &lt;- curvePoint(26, 24, 61, 65, t)
+    ellipse(x, y, 5, 5)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
