@@ -181,19 +181,23 @@ class ReferenceItem(object):
             if os.path.isfile(os.path.join(self.item_dir, filename)):
                 continue
             sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
-            testConfigFile = '%s/%s/.test.yml' % (self.item_dir, filename)
-            if os.path.isfile(testConfigFile) is not True:
-                continue
             with open(sketchFile, 'r') as f:
                 print("Interpreting " + sketchFile)
                 code = f.read()
                 img_path = os.path.join(self.output_img_dir, ('%s.png' % filename))
-                self.generate_image(code, img_path)
-                self.examples.append({
-                    'code': code,
-                    'path': sketchFile,
-                    'image': os.path.join(img_dir, ('%s.png' % filename))
-                })
+                testConfigFile = '%s/%s/.test.yml' % (self.item_dir, filename)
+                if os.path.isfile(testConfigFile) is not True:
+                    self.examples.append({
+                        'code': code,
+                        'path': sketchFile
+                    })
+                else:
+                    self.generate_image(code, img_path)
+                    self.examples.append({
+                        'code': code,
+                        'path': sketchFile,
+                        'image': os.path.join(img_dir, ('%s.png' % filename))
+                    })
 
     def generate_image(self, code, to):
         footer = ''
