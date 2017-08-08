@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>while \ Language (API)</title>
+        <title>binaryoperators \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,31 +35,32 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>while</h3></td>
+        <td><h3>binaryoperators</h3></td>
     </tr>
 
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             Controls a sequence of repetitions. The <b>while</b> structure executes a series of statements continuously while the <b>expression</b> is <b>True</b>. The expression must be updated during the repetitions or the program will never "break out" of <b>while</b>. <br/> <br/> This function can be dangerous because the code inside the <b>while</b> loop will not finish until the expression inside <b>while</b> becomes False. It will lock out all other code from running (e.g., mouse and keyboard events will not be updated). Be careful &mdash; if used incorrectly, this can lock up your code (and sometimes even the Processing environment itself). 
+             The binary comparison operators are generic functions: methods can be written for them individually or via the Ops) group generic function.<br /> <br /> Comparison of strings in character vectors is lexicographic within the strings using the collating sequence of the locale in use: see locales. The collating sequence of locales such as en_US is normally different from C (which should use ASCII) and can be surprising. Beware of making any assumptions about the collation order: e.g. in Estonian Z comes between S and T, and collation is not necessarily character-by-character – in Danish aa sorts as a single letter, after z. In Welsh ng may or may not be a single sorting unit: if it is it follows g. Some platforms may not respect the locale and always sort in numerical order of the bytes in an 8-bit locale, or in Unicode code-point order for a UTF-8 locale (and may not sort in the same order for the same language in different character sets). Collation of non-letters (spaces, punctuation signs, hyphens, fractions and so on) is even more problematic.<br /> <br /> Character strings can be compared with different marked encodings.<br /> <br /> Raw vectors should not really be considered to have an order, but the numeric order of the byte representation is used.<br /> <br /> At least one of x and y must be an atomic vector, but if the other is a list R attempts to coerce it to the type of the atomic vector: this will succeed if the list is made up of elements of length one that can be coerced to the correct type.<br /> <br /> If the two arguments are atomic vectors of different types, one is coerced to the type of the other, the (decreasing) order of precedence being character, complex, numeric, integer, logical and raw.<br /> <br /> Missing values (NA) and NaN values are regarded as non-comparable even to themselves, so comparisons involving them will always result in NA. Missing values can also result when character strings are compared and one is not valid in the current collation locale.<br /> <br /> Language objects such as symbols and calls are deparsed to character strings before comparison.<br /> 
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre>while <c>expression</c>: 
-    <c>statements</c></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>x < y
+x > y
+x <= y
+x >= y
+x == y
+x != y</pre></td></tr>
     
             <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
-                    <tr class=""><th scope="row" class="code">expression</th><td>a valid expression</td></tr>
-                    <tr class=""><th scope="row" class="code">statements</th><td>one or more statements</td></tr>
+                    <tr class=""><th scope="row" class="code">x, y</th><td>atomic vectors, symbols, calls, or other objects for which methods have been written.</td></tr>
                 </table></tr>
     
     
     
     
-        <tr><th scope="row">Related</th><td class="code">
-                    <a class="code" href="./for.html">for</a><br />
-            </table>
+    </table>
 
 
                 <!-- Creative Commons License -->

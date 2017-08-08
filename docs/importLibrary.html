@@ -38,46 +38,18 @@
         <td><h3>importLibrary</h3></td>
     </tr>
 
-            <tr class=""><th scope="row">Examples</th><td>
-                    <div class="example">                 <img src="img/importLibrary0.png"/>
-                <pre class='margin'>settings &lt;- function() {
-    importLibrary(&#34;peasycam&#34;)
-    size(200, 200, P3D)
-}
-
-setup &lt;- function() {
-    cam = PeasyCam$new(processing, 100)
-    cam$setMinimumDistance(50)
-    cam$setMaximumDistance(500)
-}
-
-draw &lt;- function() {
-    rotateX(-0.5)
-    rotateY(-0.5)
-    background(0)
-    fill(255, 0, 0)
-    box(30)
-    pushMatrix()
-    translate(0, 0, 20)
-    fill(0, 0, 255)
-    box(5)
-    popMatrix()
-}
-</pre>
-            </div>
-                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             Import Processing libraries. 
+             The keyword importLibrary is used to load a library into a Processing sketch. A library is one or more classes that are grouped together to extend the capabilities of Processing. 
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre>	importLibrary(<c>library</c>)</pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>	importLibrary(<c>libraryName</c>)</pre></td></tr>
     
             <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
-                    <tr class=""><th scope="row" class="code">library</th><td>The name of the library.</td></tr>
+                    <tr class=""><th scope="row" class="code">libraryName</th><td>string: the name of the library to load (e.g. "pdf")</td></tr>
                 </table></tr>
     
     

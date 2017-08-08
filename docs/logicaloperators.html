@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>range \ Language (API)</title>
+        <title>logicaloperators \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,25 +35,29 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>range</h3></td>
+        <td><h3>logicaloperators</h3></td>
     </tr>
 
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             Range() generates lists containing arithmetic progressions. It is useful when you need to iterate over a sequence of numbers. The end point is never part of the generated list, i.e. the list generate by range(5) will not include 5. It is possible to let range start at another number, or to specify another increment. 
+             ! indicates logical negation (NOT).<br /> <br /> & and && indicate logical AND and | and || indicate logical OR. The shorter form performs elementwise comparisons in much the same way as arithmetic operators. The longer form evaluates left to right examining only the first element of each vector. Evaluation proceeds only until the result is determined. The longer form is appropriate for programming control-flow and typically preferred in if clauses.<br /> <br /> xor indicates elementwise exclusive OR.<br /> <br /> isTRUE(x) is an abbreviation of identical(TRUE, x), and so is true if and only if x is a length-one logical vector whose only element is TRUE and which has no attributes (not even names).<br /> <br /> Numeric and complex vectors will be coerced to logical values, with zero being false and all non-zero values being true. Raw vectors are handled without any coercion for !, &, | and xor, with these operators being applied bitwise (so ! is the 1s-complement).<br /> <br /> The operators !, & and | are generic functions: methods can be written for them individually or via the Ops (or S4 Logic, see below) group generic function. (See Ops for how dispatch is computed.)<br /> <br /> NA is a valid logical object. Where a component of x or y is NA, the result will be NA if the outcome is ambiguous. In other words NA & TRUE evaluates to NA, but NA & FALSE evaluates to FALSE. See the examples below.<br />
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre>range(<c>end</c>)
-range(<c>start</c>, <c>end</c>)
-range(<c>start</c>, <c>end</c>, <c>increment</c>)</pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>! x
+x & y
+x && y
+x | y
+x || y
+xor(x, y)
+
+isTRUE(x)
+</pre></td></tr>
     
             <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
-                    <tr class=""><th scope="row" class="code">start</th><td> start point of the generated list </td></tr>
-                    <tr class=""><th scope="row" class="code">end</th><td> end point of the generated list </td></tr>
-                    <tr class=""><th scope="row" class="code">increment</th><td> value to increment by  </td></tr>
+                    <tr class=""><th scope="row" class="code">x, y</th><td>raw or logical or ‘number-like’ vectors (i.e., of types double (class numeric), integer and complex)), or objects for which methods have been written.</td></tr>
                 </table></tr>
     
     

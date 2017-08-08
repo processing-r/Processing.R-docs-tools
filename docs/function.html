@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>hex \ Language (API)</title>
+        <title>function \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,28 +35,32 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>hex</h3></td>
+        <td><h3>function</h3></td>
     </tr>
 
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             Converts a color to a String containing the equivalent hexadecimal notation. For example, the color value produced by <b>color(0, 102, 153)</b> will convert to the String value "FF006699". This function can help make your geeky debugging sessions much happier.<br/> <br/> Note that the maximum number of digits is 8, because an <b>int</b> value can only represent up to 32 bits. Specifying more than 8 digits will not increase the length of the string further. 
+             The names in an argument list can be back-quoted non-standard names.
+If value is missing, NULL is returned. If it is a single expression, the value of the evaluated expression is returned. (The expression is evaluated as soon as return is called, in the evaluation frame of the function and before any on.exit expression is evaluated.)
+If the end of a function is reached without calling return, the value of the last evaluated expression is returned. 
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>function( arglist ) expr 
+return(value)</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">arglist</th><td>Empty or one or more name or name=expression terms</td></tr>
+                    <tr class=""><th scope="row" class="code">expr</th><td>An expression</td></tr>
+                    <tr class=""><th scope="row" class="code">value</th><td>An expression</td></tr>
+                </table></tr>
     
     
     
     
-    
-        <tr><th scope="row">Related</th><td class="code">
-                    <a class="code" href="./unhex.html">unhex</a><br />
-                    <a class="code" href="./binary.html">binary</a><br />
-                    <a class="code" href="./unbinary.html">unbinary</a><br />
-            </table>
+    </table>
 
 
                 <!-- Creative Commons License -->

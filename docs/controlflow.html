@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
     <head>
-        <title>logicalNOT \ Language (API)</title>
+        <title>controlflow \ Language (API)</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="Author" content="Ce Gao" />
@@ -35,30 +35,39 @@
                 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
     <tr class="name-row">
         <th scope="row">Name</th>
-        <td><h3>logicalNOT</h3></td>
+        <td><h3>controlflow</h3></td>
     </tr>
 
     
     <tr class="">
         <th scope="row">Description</th>
         <td>
-             Inverts the Boolean value of an expression. Returns <b>True</b> if the expression is <b>False</b> and returns <b>False</b> if the expression is <b>True</b>. If the expression <b>(a>b)</b> evaluates to True, then <b>not(a>b)</b> evaluates to False. 
+             break breaks out of a for, while or repeat loop; control is transferred to the first statement outside the inner-most loop. next halts the processing of the current iteration and advances the looping index. Both break and next apply only to the innermost of nested loops.<br /> <br /> Note that it is a common mistake to forget to put braces ({ .. }) around your statements, e.g., after if(..) or for(....). In particular, you should not have a newline between } and else to avoid a syntax error in entering a if ... else construct at the keyboard or via source. For that reason, one (somewhat extreme) attitude of defensive programming is to always use braces, e.g., for if clauses.<br /> <br /> The seq in a for loop is evaluated at the start of the loop; changing it subsequently does not affect the loop. If seq has length zero the body of the loop is skipped. Otherwise the variable var is assigned in turn the value of each element of seq. You can assign to var within the body of the loop, but this will not affect the next iteration. When the loop terminates, var remains as a variable containing its latest value.<br /> 
         </td>
     </tr>
 
-             <tr class=""><th scope="row">Syntax</th><td><pre>not <c>expression</c></pre></td></tr>
+             <tr class=""><th scope="row">Syntax</th><td><pre>if(cond) expr
+if(cond) cons.expr  else  alt.expr
+
+for(var in seq) expr
+while(cond) expr
+repeat expr
+break
+next
+</pre></td></tr>
     
             <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
-                    <tr class=""><th scope="row" class="code">expression</th><td>any valid expression</td></tr>
+                    <tr class=""><th scope="row" class="code">cond</th><td>A length-one logical vector that is not NA. Conditions of length greater than one are currently accepted with a warning, but only the first element is used. An error is signalled instead when the environment variable _R_CHECK_LENGTH_1_CONDITION_ is set to true. Other types are coerced to logical if possible, ignoring any class.</td></tr>
+                    <tr class=""><th scope="row" class="code">var</th><td>A syntactical name for a variable.</td></tr>
+                    <tr class=""><th scope="row" class="code">seq</th><td>An expression evaluating to a vector (including a list and an expression) or to a pairlist or NULL. A factor value will be coerced to a character vector.</td></tr>
+                    <tr class=""><th scope="row" class="code">expr, cons.expr, alt.expr</th><td>An expression in a formal sense. This is either a simple expression or a so called compound expression, usually of the form { expr1 ; expr2 }.</td></tr>
                 </table></tr>
     
     
     
     
         <tr><th scope="row">Related</th><td class="code">
-                    <a class="code" href="./logicalOR.html">logicalOR</a><br />
-                    <a class="code" href="./logicalAND.html">logicalAND</a><br />
-                    <a class="code" href="./if.html">if</a><br />
+                    <a class="code" href="./for.html">for</a><br />
             </table>
 
 
