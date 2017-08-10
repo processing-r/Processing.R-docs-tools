@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>color \ Language (API)</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Author" content="Ce Gao" />
+        <meta name="Publisher" content="Processing" />
+        <meta name="Keywords" content="Processing, Processing, Interactive Media, Electronic Arts, Programming, gaocegege, R Language" />
+        <meta name="Description" content="R Language Mode for Processing extends the Processing Development Environment with the R Language." />
+        <script src="/javascript/modernizr-2.6.2.touch.js" type="text/javascript"></script>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body id="Langauge-en" onload="" >
+        <div id="container">
+                        <div id="header">
+                <a href="/" title="Back to R Language Mode" class="processing-logo no-cover"></a>
+            </div>
+            <a id="TOP" name="TOP"></a>
+            
+            
+            <div id="navigation">
+                <div class="navBar" id="mainnav">
+                    <a href="/">Cover</a><br/>
+                    <a href="reference/index.html">Reference</a><br/>
+                    <!-- <a href="/tutorials/">Tutorials</a><br/>
+                    <a href="/examples/">Examples</a><br/> -->
+                    <a href="https://github.com/gaocegege/Processing.R/issues">Bugs</a>
+                </div>
+            </div>
+            
+
+            <div class="content">
+
+                <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+    <tr class="name-row">
+        <th scope="row">Name</th>
+        <td><h3>color</h3></td>
+    </tr>
+
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                 <img src="img/color1.png"/>
+                <pre class='margin'>c = color(255, 204, 0)  # Define color &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+noStroke()  # Don&#39;t draw a stroke around shapes
+rect(30, 20, 55, 55)  # Draw rectangle
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/color2.png"/>
+                <pre class='margin'>c = color(255, 204, 0)  # Define color &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+noStroke()  # Don&#39;t draw a stroke around shapes
+ellipse(25, 25, 80, 80)  # Draw left circle
+
+# Using only one value with color() generates a grayscale value.
+c = color(65)  # Update &#39;c&#39; with grayscale value
+fill(c)  # Use updated &#39;c&#39; as fill color
+ellipse(75, 75, 80, 80)  # Draw right circle
+</pre>
+            </div>
+                                <div class="example">                 <img src="img/color3.png"/>
+                <pre class='margin'>noStroke()  # Don&#39;t draw a stroke around shapes
+
+# If no colorMode is specified, then the default of RGB with scale of 0-255 is
+# used.
+c = color(50, 55, 100)  # Create a color for &#39;c&#39;
+fill(c)  # Use color variable &#39;c&#39; as fill color
+rect(0, 10, 45, 80)  # Draw left rect
+
+colorMode(HSB, 100)  # Use HSB with scale of 0-100
+c = color(50, 55, 100)  # Update &#39;c&#39; with new color
+fill(c)  # Use updated &#39;c&#39; as fill color
+rect(55, 10, 45, 80)  # Draw right rect
+</pre>
+            </div>
+                            </tr>
+    
+    <tr class="">
+        <th scope="row">Description</th>
+        <td>
+             Creates colors for storing in variables of the <b>color</b> datatype. The parameters are interpreted as RGB or HSB values depending on the current <b>colorMode()</b>. The default mode is RGB values from 0 to 255 and, therefore, <b>color(255, 204, 0)</b> will return a bright yellow color (see the first example above).<br/> <br/> Note that if only one value is provided to <b>color()</b>, it will be interpreted as a grayscale value. Add a second value, and it will be used for alpha transparency. When three values are specified, they are interpreted as either RGB or HSB values. Adding a fourth value applies alpha transparency.<br/> <br/> Note that when using hexadecimal notation, it is not necessary to use <b>color()</b>, as in: <b>c = #006699</b><br/> <br/> More about how colors are stored can be found in the reference for the <a href="color_datatype.html">color</a> datatype. 
+        </td>
+    </tr>
+
+             <tr class=""><th scope="row">Syntax</th><td><pre>color(<c>gray</c>)
+color(<c>gray</c>, <c>alpha</c>)
+color(<c>v1</c>, <c>v2</c>, <c>v3</c>)
+color(<c>v1</c>, <c>v2</c>, <c>v3</c>, <c>alpha</c>)</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">gray</th><td>int: number specifying value between white and black</td></tr>
+                    <tr class=""><th scope="row" class="code">alpha</th><td>float, or int: relative to current color range</td></tr>
+                    <tr class=""><th scope="row" class="code">v1</th><td>float, or int: red or hue values relative to the current color range</td></tr>
+                    <tr class=""><th scope="row" class="code">v2</th><td>float, or int: green or saturation values relative to the current color range</td></tr>
+                    <tr class=""><th scope="row" class="code">v3</th><td>float, or int: blue or brightness values relative to the current color range</td></tr>
+                </table></tr>
+    
+    
+    
+    
+        <tr><th scope="row">Related</th><td class="code">
+                    <a class="code" href="./colorMode.html">colorMode</a><br />
+            </table>
+
+
+                <!-- Creative Commons License -->
+                <div class="license">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border: none" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                </div>
+
+            </div>
+
+            <div id="footer">
+                <div id="copyright">Processing is an open project intiated by <a href="http://benfry.com/">Ben Fry</a> and <a href="http://reas.com">Casey Reas</a>. It is developed by a <a href="http://processing.org/about/people/">small team of volunteers</a>.</div>
+                <div id="colophon">
+                    <a href="/copyright.html">© Info</a> 
+                    <span>Site hosted by <a href="http://www.mediatemple.net">Media Temple</a>.</span>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/javascript/jquery-1.9.1.min.js"><\/script>');</script>
+        <script src="javascript/site.js" type="text/javascript"></script>
+    </body>
+</html>

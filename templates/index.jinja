@@ -1,0 +1,36 @@
+{# note that this file isn't a template; it's just processed and output. #}
+{% extends "page_template.jinja" %}
+
+{% block title %}Processing.R{% endblock %}
+
+{% block content %}
+<h1>R for Processing: Processing.R</h1>
+
+<div class="butterbar">
+	Processing.R is still in early development -- it is not feature-complete or production-ready. 
+    Please try our experimental mode and give us your feedback.
+</div>
+
+<p>Processing.R is a mode for Processing that enables users to write Processing sketches using the R language. The mode can be installed in the Processing Development Environment (PDE). It can also run on the command line as a stand-alone jar.</p>
+
+<p>Procesing.R supports:</p>
+
+<div><ul>
+    <li>native R programming and syntax</li>
+    <li>most Processing built-in functions (draw(), rect(), box(), etc.)</li>
+    <li>importing select Processing(Java) libraries (e.g. "peasycam")</li>
+    <li>importing select R Packages (e.g. "foreach")</li>
+</ul></div>
+
+<p>Feel free to hack on Processing.R! Welcome to <a href="https://github.com/gaocegege/Processing.R" target="_blank">github.com/gaocegege/Processing.R</a> to help us improve the implementation.</p>
+
+<h4>Credits</h4>
+
+<p>Processing.R was chiefly developed by <a href="http://gaocegege.com" target="_blank">Ce Gao</a>, 
+with contributions from <a href="http://jeremydouglass.com/" target="_blank">Jeremy Douglass</a>, <a href="https://www.hawkingrei.com/" target="_blank">Weizhen Wang</a> and <a href="https://github.com/gaocegege/Processing.R/blob/master/AUTHORS.md" target="_blank">many other contributors</a>. Examples, reference, and tutorials were migrated from <a href="https://processing.org/" target="_blank">processing.org</a> and <a href="http://py.processing.org/" target="_blank">py.processing.org</a>.</p>
+
+<p>Procesing.R was implemented as a <a href="https://developers.google.com/open-source/gsoc/">Google Summer of Code</a> project in 2017, under the supervision of <a href="http://jeremydouglass.com/" target="_blank">Jeremy Douglass</a>. The documentation and reference will be ready soon.</p>
+
+<p>Processing.R is inspired by <a href="http://py.processing.org/" target="_blank">Python Mode for Processing</a>, and code about sketch service is reused in Processing.R. Besides this, Processing.R copies the logic from <a href="http://renjin.org/" target="_blank">renjin</a> to support R packages.</p>
+
+{% endblock %}

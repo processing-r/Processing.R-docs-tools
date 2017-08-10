@@ -15,15 +15,37 @@ logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 img_dir = 'img'
 property_dir = '.property.yml'
 
+
 class Generator(object):
+    def __init__(self, root, env, jar):
+        self.reference_generator = ReferenceGenerator(root, env, jar)
+        self.cover_generator = CoverGenerator(env)
+    
+    def generate(self):
+        self.cover_generator.generate()
+        self.reference_generator.generate()
+
+
+class CoverGenerator(object):
+    def __init__(self, env):
+        self.docs_dir = output_dir
+        self.env = env
+
+    def generate(self):
+        cover_template = self.env.get_template('index.jinja')
+        with open(os.path.join(self.docs_dir, 'index.html'), 'w+') as f:
+            f.write(cover_template.render())
+
+
+class ReferenceGenerator(object):
     def __init__(self, root, env, jar):
         self.root_dir = root
         self.env = env
         self.jar_path = jar
-        self.output_img_dir = os.path.join(output_dir, img_dir)
+        self.output_img_dir = os.path.join(output_reference_dir, img_dir)
         if not os.path.exists(self.output_img_dir):
             os.makedirs(self.output_img_dir)
-        self.output_html_dir = output_dir
+        self.output_html_dir = output_reference_dir
         self.reference_dir = self.root_dir + '/examples/reference'
         self.reference_items = []
 
@@ -41,7 +63,7 @@ class Generator(object):
     def render_reference_items(self):
         for item in self.reference_items:
             reference_template = self.env.get_template('reference_item_template.jinja')
-            with open(os.path.join(output_dir, ('%s.html' % item.name)), 'w+') as f:
+            with open(os.path.join(self.output_html_dir, ('%s.html' % item.name)), 'w+') as f:
                 f.write(reference_template.render(item=item, today=datetime.datetime.now().ctime()))
 
     def render_reference_index(self):
@@ -131,7 +153,7 @@ class Generator(object):
         elements.append({'type': 'end-category', 'content': None})
 
         index_template = self.env.get_template('reference_index_template.jinja')
-        with open(os.path.join(output_dir, 'index.html'), 'w+') as f:
+        with open(os.path.join(self.output_html_dir, 'index.html'), 'w+') as f:
             f.write(index_template.render(elements=elements))
 
 class ReferenceItem(object):
@@ -237,16 +259,19 @@ def generate(core, jar, docs_dir):
     click.echo('The location of Processing.R docs:       %s' % docs_dir)
 
     template_dir_short = 'templates'
+    output_reference_dir_short = 'docs/reference'
     output_dir_short = 'docs'
     content_dir_short = 'content'
 
     global template_dir
     global output_dir
     global content_dir
+    global output_reference_dir
 
     template_dir = os.path.join(docs_dir, template_dir_short)
     output_dir = os.path.join(docs_dir, output_dir_short)
     content_dir = os.path.join(docs_dir, content_dir_short)
+    output_reference_dir = os.path.join(docs_dir, output_reference_dir_short)
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), trim_blocks='true')
 

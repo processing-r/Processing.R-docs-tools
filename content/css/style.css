@@ -317,7 +317,11 @@ code, .code, kbd {
 	line-height			: normal; color: #000000;
 }
 
-li {margin-bottom: 1em; }
+li {
+	margin-bottom 		: 1em;
+	
+	font-size			: 0.79em;
+}
 
 .large-link { 
 	font-size: 1.4rem; 

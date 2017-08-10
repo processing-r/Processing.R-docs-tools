@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>binaryoperators \ Language (API)</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="Author" content="Ce Gao" />
+        <meta name="Publisher" content="Processing" />
+        <meta name="Keywords" content="Processing, Processing, Interactive Media, Electronic Arts, Programming, gaocegege, R Language" />
+        <meta name="Description" content="R Language Mode for Processing extends the Processing Development Environment with the R Language." />
+        <script src="/javascript/modernizr-2.6.2.touch.js" type="text/javascript"></script>
+        <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body id="Langauge-en" onload="" >
+        <div id="container">
+                        <div id="header">
+                <a href="/" title="Back to R Language Mode" class="processing-logo no-cover"></a>
+            </div>
+            <a id="TOP" name="TOP"></a>
+            
+            
+            <div id="navigation">
+                <div class="navBar" id="mainnav">
+                    <a href="/">Cover</a><br/>
+                    <a href="reference/index.html">Reference</a><br/>
+                    <!-- <a href="/tutorials/">Tutorials</a><br/>
+                    <a href="/examples/">Examples</a><br/> -->
+                    <a href="https://github.com/gaocegege/Processing.R/issues">Bugs</a>
+                </div>
+            </div>
+            
+
+            <div class="content">
+
+                <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+    <tr class="name-row">
+        <th scope="row">Name</th>
+        <td><h3>binaryoperators</h3></td>
+    </tr>
+
+    
+    <tr class="">
+        <th scope="row">Description</th>
+        <td>
+             The binary comparison operators are generic functions: methods can be written for them individually or via the Ops) group generic function.<br /> <br /> Comparison of strings in character vectors is lexicographic within the strings using the collating sequence of the locale in use: see locales. The collating sequence of locales such as en_US is normally different from C (which should use ASCII) and can be surprising. Beware of making any assumptions about the collation order: e.g. in Estonian Z comes between S and T, and collation is not necessarily character-by-character – in Danish aa sorts as a single letter, after z. In Welsh ng may or may not be a single sorting unit: if it is it follows g. Some platforms may not respect the locale and always sort in numerical order of the bytes in an 8-bit locale, or in Unicode code-point order for a UTF-8 locale (and may not sort in the same order for the same language in different character sets). Collation of non-letters (spaces, punctuation signs, hyphens, fractions and so on) is even more problematic.<br /> <br /> Character strings can be compared with different marked encodings.<br /> <br /> Raw vectors should not really be considered to have an order, but the numeric order of the byte representation is used.<br /> <br /> At least one of x and y must be an atomic vector, but if the other is a list R attempts to coerce it to the type of the atomic vector: this will succeed if the list is made up of elements of length one that can be coerced to the correct type.<br /> <br /> If the two arguments are atomic vectors of different types, one is coerced to the type of the other, the (decreasing) order of precedence being character, complex, numeric, integer, logical and raw.<br /> <br /> Missing values (NA) and NaN values are regarded as non-comparable even to themselves, so comparisons involving them will always result in NA. Missing values can also result when character strings are compared and one is not valid in the current collation locale.<br /> <br /> Language objects such as symbols and calls are deparsed to character strings before comparison.<br /> 
+        </td>
+    </tr>
+
+             <tr class=""><th scope="row">Syntax</th><td><pre>x < y
+x > y
+x <= y
+x >= y
+x == y
+x != y</pre></td></tr>
+    
+            <tr class=""><th scope="row">Parameters</th><td><table cellpadding="0" cellspacing="0" border="0">                
+                    <tr class=""><th scope="row" class="code">x, y</th><td>atomic vectors, symbols, calls, or other objects for which methods have been written.</td></tr>
+                </table></tr>
+    
+    
+    
+    
+    </table>
+
+
+                <!-- Creative Commons License -->
+                <div class="license">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border: none" src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+                </div>
+
+            </div>
+
+            <div id="footer">
+                <div id="copyright">Processing is an open project intiated by <a href="http://benfry.com/">Ben Fry</a> and <a href="http://reas.com">Casey Reas</a>. It is developed by a <a href="http://processing.org/about/people/">small team of volunteers</a>.</div>
+                <div id="colophon">
+                    <a href="/copyright.html">© Info</a> 
+                    <span>Site hosted by <a href="http://www.mediatemple.net">Media Temple</a>.</span>
+                </div>
+            </div>
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/javascript/jquery-1.9.1.min.js"><\/script>');</script>
+        <script src="javascript/site.js" type="text/javascript"></script>
+    </body>
+</html>
