@@ -38,6 +38,20 @@
         <td><h3>cursor</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre># Move the mouse left and right across the image to see the cursor change from a
+# cross to a hand
+
+draw &lt;- function() {
+    if (mouseX &lt; 50) {
+        cursor(CROSS)
+    } else {
+        cursor(HAND)
+    }
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>

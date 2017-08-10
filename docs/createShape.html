@@ -38,6 +38,95 @@
         <td><h3>createShape</h3></td>
     </tr>
 
+            <tr class=""><th scope="row">Examples</th><td>
+                    <div class="example">                <pre>settings &lt;- function() {
+    size(100, 100)
+}
+
+setup &lt;- function() {
+    # Creating the PShape as a square. The numeric arguments are similar to rect().
+    s = createShape()
+    s$beginShape(TRIANGLE_STRIP)
+    s$vertex(30, 75)
+    s$vertex(40, 20)
+    s$vertex(50, 75)
+    s$vertex(60, 20)
+    s$vertex(70, 75)
+    s$vertex(80, 20)
+    s$vertex(90, 75)
+    s$endShape()
+}
+
+draw &lt;- function() {
+    shape(s, 0, 0)
+}
+</pre>
+            </div>
+                                <div class="example">                <pre>settings &lt;- function() {
+    size(1000, 1000)
+}
+
+setup &lt;- function() {
+    # Create the shape group
+    alien = createShape(GROUP)
+    
+    # Make two shapes
+    head = createShape(ELLIPSE, -25, 0, 50, 50)
+    head$setFill(color(255))
+    body = createShape(RECT, -25, 45, 50, 40)
+    body$setFill(color(0))
+    
+    # Add the two &#39;child&#39; shapes to the parent group
+    alien$addChild(body)
+    alien$addChild(head)
+}
+
+draw &lt;- function() {
+    background(204)
+    translate(50, 15)
+    shape(alien)
+}
+</pre>
+            </div>
+                                <div class="example">                <pre>settings &lt;- function() {
+    size(100, 100)
+}
+
+setup &lt;- function() {
+    # Creating the PShape as a square. The numeric arguments are similar to rect().
+    s = createShape()
+    s$beginShape()
+    s$fill(0, 0, 255)
+    s$noStroke()
+    s$vertex(0, 0)
+    s$vertex(0, 50)
+    s$vertex(50, 50)
+    s$vertex(50, 0)
+    s$endShape(CLOSE)
+}
+
+draw &lt;- function() {
+    shape(s, 25, 25)
+}
+</pre>
+            </div>
+                                <div class="example">                <pre>settings &lt;- function() {
+    size(100, 100)
+}
+
+setup &lt;- function() {
+    # Creating the PShape as a square. The numeric arguments are similar to rect().
+    square = createShape(RECT, 0, 0, 50, 50)
+    square$setFill(color(0, 0, 255))
+    square$setStroke(FALSE)
+}
+
+draw &lt;- function() {
+    shape(square, 25, 25)
+}
+</pre>
+            </div>
+                            </tr>
     
     <tr class="">
         <th scope="row">Description</th>
