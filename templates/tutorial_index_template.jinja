@@ -1,0 +1,40 @@
+{% extends "page_template.jinja" %}
+
+{% block title %}Tutorials{% endblock %}
+
+{% block content %}
+<div id="Tutorials">
+<h1 class="large-header"><span class="black">Processing.R Tutorials.</span> A collection of step-by-step lessons introducing Processing (with R).</h1>
+
+<p>Many of these tutorials were directly translated into R from their <a
+href="http://processing.org/tutorials">Java counterparts</a> by the
+Processing.R documentation team and are accordingly credited to their original
+authors. <a href="https://github.com/processing-r/Processing.R-docs-tools/issues">Please
+report any mistakes or inaccuracies in the Processing.R documentation
+GitHub.</a></p>
+
+<table width="679" cellspacing="1" cellpadding="0" border="0">
+    <tbody>
+        {% for tutorial_batch in tutorials|batch(3) %}
+            <tr>
+                {% for tutorial in tutorial_batch %}
+                    <td><div class="curated-item">
+                        <a href="{{ tutorial.url }}">
+                            <img src="{{ tutorial.image }}" width="223" height="72" alt="Preview image" title="{{tutorial.title}}">
+                        </a>
+                        <p>
+                            <br />
+                            <a href="{{ tutorial.url }}">{{ tutorial.title }}</a>
+                            <br />
+                            by {{ tutorial.author }}
+                        </p>
+                        <p>{{ tutorial.introduction }}</p>
+                        <p>Level: {{ tutorial.level }}</p>
+                    </div></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

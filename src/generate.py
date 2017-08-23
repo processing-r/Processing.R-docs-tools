@@ -1,29 +1,31 @@
+"""Generate Documentation"""
+
 import logging
 import os
-import jinja2
-import click
 import tempfile
 from subprocess import call
-import string
-import time
-import shutil
-import yaml
 import datetime
+import markdown
+import yaml
+import jinja2
+import click
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 img_dir = 'img'
-property_dir = '.property.yml'
+property_file = '.property.yml'
 
 
 class Generator(object):
     def __init__(self, root, env, jar):
         self.reference_generator = ReferenceGenerator(root, env, jar)
         self.cover_generator = CoverGenerator(env)
-    
+        self.tutorial_generator = TurotialGenerator(env)
+
     def generate(self):
         self.cover_generator.generate()
         self.reference_generator.generate()
+        self.tutorial_generator.generate()
 
 
 class CoverGenerator(object):
@@ -35,6 +37,59 @@ class CoverGenerator(object):
         cover_template = self.env.get_template('index.jinja')
         with open(os.path.join(self.docs_dir, 'index.html'), 'w+') as f:
             f.write(cover_template.render())
+
+
+class TurotialGenerator(object):
+    def __init__(self, env):
+        self.env = env
+        self.input_dir = tutorials_dir
+        self.output_dir = output_tutorials_dir
+
+    def generate(self):
+        file_name = os.path.join(self.input_dir, 'index.yml')
+        items = []
+        with open(file_name) as f:
+            raw_yaml_doc = f.read()
+            yaml_obj = yaml.load(raw_yaml_doc)
+            items = yaml_obj['index']
+        tutorial_items = []
+        for item in items:
+            tutorial_item = TutorialItem(
+                self.env, self.input_dir, item, self.output_dir)
+            with open(os.path.join(self.output_dir, item, 'index.html'), 'w+') as f:
+                item_template = self.env.get_template(
+                    'tutorial_item_template.jinja')
+                f.write(item_template.render(tutorial=tutorial_item))
+                tutorial_items.append(tutorial_item)
+        index_template = self.env.get_template('tutorial_index_template.jinja')
+        with open(os.path.join(self.output_dir, 'index.html'), 'w+') as f:
+            f.write(index_template.render(tutorials=tutorial_items))
+
+
+class TutorialItem(object):
+    def __init__(self, env, input_dir, item, output_dir):
+        self.env = env
+        self.input_dir = input_dir
+        self.item = item
+        self.item_input_dir = os.path.join(self.input_dir, self.item)
+        self.output_dir = output_dir
+        self.item_output_dir = os.path.join(self.output_dir, self.item)
+        self.parse_property()
+
+    def parse_property(self):
+        with open(os.path.join(self.item_input_dir, property_file), 'r') as f:
+            raw_yaml_doc = f.read()
+            yaml_obj = yaml.load(raw_yaml_doc)
+            self.title = yaml_obj['title']
+            # The directory must be named 'imgs'.
+            self.image = os.path.join(self.item, 'imgs', yaml_obj['image'])
+            self.url = self.item + '/'
+            self.author = yaml_obj['author']
+            self.introduction = yaml_obj['introduction']
+            self.level = yaml_obj['level']
+            with open(os.path.join(
+                self.item_input_dir, 'index.md'), 'r') as index_f:
+                self.content = markdown.markdown(index_f.read())
 
 
 class ReferenceGenerator(object):
@@ -62,9 +117,11 @@ class ReferenceGenerator(object):
 
     def render_reference_items(self):
         for item in self.reference_items:
-            reference_template = self.env.get_template('reference_item_template.jinja')
+            reference_template = self.env.get_template(
+                'reference_item_template.jinja')
             with open(os.path.join(self.output_html_dir, ('%s.html' % item.name)), 'w+') as f:
-                f.write(reference_template.render(item=item, today=datetime.datetime.now().ctime()))
+                f.write(reference_template.render(
+                    item=item, today=datetime.datetime.now().ctime()))
 
     def render_reference_index(self):
         categories = dict()
@@ -74,9 +131,11 @@ class ReferenceGenerator(object):
             if item.category is '':
                 # print(item.category)
                 path = (item.category, '')
-            if path == ('', ''): continue
+            if path == ('', ''):
+                continue
             # Fields and Methods aren't included in the index
-            if path[1] in ('Method', 'Field'): continue
+            if path[1] in ('Method', 'Field'):
+                continue
             if path not in categories:
                 categories[path] = list()
             categories[path].append(item)
@@ -139,8 +198,10 @@ class ReferenceGenerator(object):
                 current_cat = cat
             if subcat != current_subcat:
                 if current_subcat is not None:
-                    elements.append({'type': 'end-subcategory', 'content': None})
-                elements.append({'type': 'start-subcategory', 'content': subcat})
+                    elements.append(
+                        {'type': 'end-subcategory', 'content': None})
+                elements.append(
+                    {'type': 'start-subcategory', 'content': subcat})
                 current_subcat = subcat
             elements.append({'type': 'start-list', 'content': None})
             # For demo.
@@ -152,9 +213,11 @@ class ReferenceGenerator(object):
         elements.append({'type': 'end-subcategory', 'content': None})
         elements.append({'type': 'end-category', 'content': None})
 
-        index_template = self.env.get_template('reference_index_template.jinja')
+        index_template = self.env.get_template(
+            'reference_index_template.jinja')
         with open(os.path.join(self.output_html_dir, 'index.html'), 'w+') as f:
             f.write(index_template.render(elements=elements))
+
 
 class ReferenceItem(object):
     def __init__(self, root, name, jar, output_img_dir):
@@ -167,9 +230,9 @@ class ReferenceItem(object):
 
         self.parse_reference_item()
         self.parse_property()
-    
+
     def parse_property(self):
-        file_name = os.path.join(self.item_dir, property_dir)
+        file_name = os.path.join(self.item_dir, property_file)
         with open(file_name) as f:
             raw_yaml_doc = f.read()
             yaml_obj = yaml.load(raw_yaml_doc)
@@ -204,9 +267,10 @@ class ReferenceItem(object):
                 continue
             sketchFile = '%s/%s/%s.rpde' % (self.item_dir, filename, filename)
             with open(sketchFile, 'r') as f:
-                print("Interpreting " + sketchFile)
+                print('Interpreting ' + sketchFile)
                 code = f.read()
-                img_path = os.path.join(self.output_img_dir, ('%s.png' % filename))
+                img_path = os.path.join(
+                    self.output_img_dir, ('%s.png' % filename))
                 testConfigFile = '%s/%s/.test.yml' % (self.item_dir, filename)
                 if os.path.isfile(testConfigFile) is not True:
                     self.examples.append({
@@ -231,18 +295,21 @@ class ReferenceItem(object):
             for i in range(pos, len(code) - 1):
                 if code[i] is '\n' and code[i + 1] is '}':
                     footer = '\n    processing$saveFrame("%s")\n    processing$exit()\n' % to
-                    actual_code = code[:i] + footer + code[i+1:]
+                    actual_code = code[:i] + footer + code[i + 1:]
         else:
             footer = 'processing$saveFrame("%s")\nprocessing$exit()\n' % to
             actual_code = '%s\n%s' % (code, footer)
 
-        # I don't know why temp file could not be written directly. It must be open() and written.
-        temp_file = tempfile.NamedTemporaryFile(prefix='Processing.R.', suffix='.tmp.rpde')
+        # I don't know why temp file could not be written directly. It must be
+        # open() and written.
+        temp_file = tempfile.NamedTemporaryFile(
+            prefix='Processing.R.', suffix='.tmp.rpde')
         temp_file.write(bytes(actual_code, 'utf-8'))
         temp_file.seek(0)
         retcode = call(['java', '-jar', self.jar_path, temp_file.name])
         if retcode is not 0:
             logging.error('retcode of runner.jar: %d', retcode)
+
 
 @click.command()
 @click.option('--core', default='', help='The location of Processing.R source code.')
@@ -260,23 +327,31 @@ def generate(core, jar, docs_dir):
 
     template_dir_short = 'templates'
     output_reference_dir_short = 'docs/reference'
+    output_tutorial_dir_short = 'docs/tutorials'
     output_dir_short = 'docs'
     content_dir_short = 'content'
+    tutorials_dir_short = 'tutorials'
 
     global template_dir
     global output_dir
     global content_dir
+    global tutorials_dir
     global output_reference_dir
+    global output_tutorials_dir
 
     template_dir = os.path.join(docs_dir, template_dir_short)
     output_dir = os.path.join(docs_dir, output_dir_short)
     content_dir = os.path.join(docs_dir, content_dir_short)
+    tutorials_dir = os.path.join(docs_dir, tutorials_dir_short)
     output_reference_dir = os.path.join(docs_dir, output_reference_dir_short)
+    output_tutorials_dir = os.path.join(docs_dir, output_tutorial_dir_short)
 
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), trim_blocks='true')
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(
+        template_dir), trim_blocks='true')
 
     generator = Generator(core, env, jar)
     generator.generate()
+
 
 if __name__ == '__main__':
     generate()
