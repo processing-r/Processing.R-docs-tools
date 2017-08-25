@@ -175,8 +175,6 @@ class ReferenceGenerator(object):
             ('Typography', 'Attributes'),
             ('Typography', 'Metrics'),
             ('Math', ''),
-            ('Math', 'Operators'),
-            ('Math', 'Bitwise Operators'),
             ('Math', 'Calculation'),
             ('Math', 'Trigonometry'),
             ('Math', 'Random'),
