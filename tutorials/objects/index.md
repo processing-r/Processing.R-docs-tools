@@ -8,7 +8,7 @@ An **object** is a more formal way to group all of these pieces together. Object
 
 We'll often talk about **classes** as well--a class is the "blueprint" for potentially many objects of the same type. The objects themselves are the actual collections of data built from the class template. Let's consider our ball example, a `Ball` class is code that specifies that all `Ball` objects must have an `xloc`, `yloc`, `xspeed`, `yspeed`, `radius`, and `id`, as well as a function `display()` and a function `move()`. 
 
-![enter image description here](https://imgur.com/JfzopbP.png)
+![A Ball class is like a general diagram, individual Ball objects are concrete instances of that class](img/ball_class_and_objects.png)
 
 In a way, the word `Ball` itself is a bit of data associated with an object, since we need some way to know that an object `x` is a `Ball`, and not, say, a `Car`.
 
