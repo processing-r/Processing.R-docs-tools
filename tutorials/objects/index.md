@@ -10,13 +10,15 @@ We'll often talk about **classes** as well--a class is the "blueprint" for poten
 
 ![A Ball class is like a general diagram, individual Ball objects are concrete instances of that class](img/ball_class_and_objects.png)
 
-In a way, the word `Ball` itself is a bit of data associated with an object, since we need some way to know that an object `x` is a `Ball`, and not, say, a `Car`.
+In a way, the word `Ball` itself is a bit of data associated with an object, since we need some way to know that an object `x` is a `Ball`, and not, say, a `Car`. In Processing.R we recommend capital initials for class names (e.g. `Ball` rather than `ball`).
 
-Usually we'll use capital initials for class names (e.g. `Ball` rather than `ball`). However, R is not as consistent about this as some other languages, so don't be too surprised to see exceptions to this rule. Some special terminology is also used: functions that that are part of classes (and hence the objects of that class) are called **methods**, and the variables that each object has are called **instance variables** (since, like `radius` in the image above, they hold different values for each instance of the class).
+> Note: Capitaliing classes (`Ball`, not `ball`) is a coding convention. It is very consistentlu observed in some language and language modes (like Processing / Java) and less consistent in others (p5.js / Javascript, Processing.R / R). Don't be too surprised to see exceptions to this rule!
+
+When talking about classes, some special terminology is also used. Functions that that are part of classes (and hence part of the objects of that class) are called **methods**. The variables belonging to each object are called **instance variables**, which hold different values for each _instance_ of the class. In the figure above, `radius` has a different value for each Ball object.
 
 ### Objects in R
 
-This idea of classes serving to collect data and functions (sorry, *methods*) into single objects hasn't been around forever, and over the years different programming languages have captured the idea in different ways. Today, the most popular languages like Java, C++, Python, and even JavaScript have settled on a pattern where a class template is defined within a single chunk of code. If you've used any of these languages, this chunk of JavaScript might look familiar (if not, feel free to just skim):
+This idea of classes serving to collect data and methods (not functions!) into single objects hasn't been around forever, and over the years different programming languages have captured the idea in different ways. Today, the most popular languages like Java, C++, Python, and even JavaScript have settled on a pattern where a class template is defined within a single chunk of code. If you've used any of these languages, this chunk of JavaScript might look familiar (if not, feel free to just skim):
 
 ```
 // This code is JavaScript, not R...
@@ -47,23 +49,28 @@ b2.move();
 b2.display();
 ```
 
-This code defines a `Ball` class (blueprint), creates two `Ball`  objects `b1` and `b2`, and then asks each in turn to move itself then display itself.
+This code defines a `Ball` class (blueprint), creates two `Ball`  objects `b1` and `b2`, and then asks each in turn to move itself then display itself... but that's enough JavaScript--this tutorial is supposed to be about R! Although modern versions of R can follow this same sort of coding pattern, it hasn't always, since R originally drew inspiration from the statistical language and functional languages Scheme and Lisp.
 
-That's enough JavaScript--this tutorial is supposed to be about R! Although modern versions of R can follow this sort of coding pattern, it hasn't always, since R originally drew inspiration from the statistical language and functional languages Scheme and Lisp. Over the years, R has been graced with *three* different ways to define classes in code.
+Over the years, R has been graced with *three* different ways to define classes in code.
 
  1. S3 Classes - these are the oldest, and the most commonly found in R
  2. S4 Classes - these utilize a hybrid of S3 class concepts, and more modern syntax similar to the JavaScript example above
  3. Reference Classes (RC) - the most recently added, these are very similar to classes defined by Java, JavaScript, Python, C++, etc.
 
-This particular tutorial focuses on S3 classes, since these are so commonly found in R code.
+**Processing.R supports S3 classes only** -- S3 classes are the most commonly found in R code, and they are what will be covered in this tutorial.
+
+	Note: When looking at R code "in the wild" be careful not to mix S3, S4, and RC classes -- and keep in mind that only S3 is supported in Processing.R.
 
 ### Attributes and Lists
 
-Before we can write some classes in R, we need to discuss a feature not found in many other languages: attributes. Attributes are a kind of "metadata" that we can attach to any other data. Let's create a random sample of 100 numbers using the `rnorm()` function:
+Before we can write some classes in R, we need to discuss a feature of R that is not found in many other languages: **attributes**. R attributes are a kind of "metadata" that we can attach to any other data. Let's create a random sample of 100 numbers using the `rnorm()` function:
+
 ```
 samp <- rnorm(100, mean = 20, sd = 2)
 ```
-We may want to remember, for later use, what kind of data this is. We can do this with the `attr()` function:
+
+We may want to remember, for later use, what kind of data this is. We can do this by making up a "sampletype" attribute and adding it to our sample with the `attr()` function:
+
 ```
 attr(samp, "sampletype") <- "Normal Sample"
 ```
@@ -71,7 +78,9 @@ Then, later, we can extract this attribute:
 ```
 stdout$print(attr(samp, "sampletype"))   # prints "Normal Sample"
 ```
-Attributes are how R stores class information. Let's define a numeric vector containing some information for a ball:
+
+Attributes are also how R stores class information. Let's define a numeric **vector** containing some information for a ball:
+
 ```
 b1 <- c(200, 215, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
 attr(b1, "class") <- "Ball"
@@ -81,13 +90,14 @@ Now, as far as R is concerned, `b1` is a `Ball` object! This is because `"class"
 class(b1) <- "Ball"
 ```
 
-We can assign attributes to any kind of data in R. Here we've used a numeric vector of 5 numbers to store data about the ball. This isn't too flexible--vectors (created with the `c()` function) can only store one type of data (numbers in this case) as a basic array. Lists, on the other hand, are more flexible: they can hold vectors of different kinds, and even other lists. Maybe we want to store ball data as a location vector, a speed vector, a radius number (actually a vector of length 1 in R), and an id:
+We can assign attributes to any kind of data in R. Here we've used a numeric vector of 5 numbers to store data about the ball. This isn't too flexible--vectors (created with the `c()` function) can only store one type of data (numbers in this case) as a basic array. **Lists**, on the other hand, are more flexible: they can hold vectors of different kinds, and even other lists. Maybe we want to store ball data as a location vector, a speed vector, a radius number (actually a vector of length 1 in R), and an id:
+
 ```
 b1 <- list(c(200, 215), c(2, -1), 20, "Ball1")
 class(b1) <- "Ball"
 ```
 
-Another cool think about lists (and vectors too, actually) is that the elements can have "names":
+Another cool thing about lists (and vectors too, actually) is that list elements can have "names":
 
 ```
 b1 <- list(loc = c(200, 215), speed = c(2, -1),
@@ -215,14 +225,15 @@ move.Particle <- function(someparticle) {
   return(somparticle)
 }
 ```
-(Sidenote: in R, the `.` character isn't very special: it can be used in variable and function names just like any other character. As we'll see though, it is necessary to use this naming scheme for class-specific methods.)
 
-Now we can say something like 
+	Note: In R, unlike in Java or JavaScript, the `.` character isn't very special: it can be used in variable and function names just like any other character. As we'll see though, it is necessary to use this naming scheme for class-specific methods.)
+
+Now we can say something like this without worry:
+
 ```
 p1 <- move.Particle(p1)
 b1 <- move.Ball(b1)
 ```
-without worry.
 
 To make our code cleaner, it would be nice if we could define a generic `move()` function, and if the parameter given had class `"Ball"` then it called `move.Ball()`, and if it had class `"Particle"` then it called `move.Particle()`. We could try something like this
 
