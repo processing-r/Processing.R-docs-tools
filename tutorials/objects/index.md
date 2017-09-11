@@ -358,6 +358,44 @@ Finally, let's write a program that simulates two ball objects and two particle 
 Here we will store all of the objects (both Balls and Particles) as elements of a single global `objects` list.
 
 ```
+#####################
+## Main program code
+#####################
+
+# global "objects" list to store Balls and Particles
+objects <- list()
+
+# settings: create window
+settings <- function() {
+  size(400, 400)
+}
+
+# setup: add objects to objects list
+setup <- function() {
+  # ball in upper-right, moving leftward & down
+  objects$b1 <- Ball(350, 50, -1.5, 1.2, 15, "ball1")
+  # ball in uppr-left, moving rightward & down
+  objects$b2 <- Ball(50, 50, 1.2, 1.5, 20, "ball2")
+  # particle in lower-left
+  objects$p1 <- Particle(50, 350)
+  # particle in lower-right
+  objects$p2 <- Particle(350, 350)
+}
+
+# draw: each frame, update each object 
+draw <- function() {
+  background(255, 255, 255)
+  display(objects$b1)
+  display(objects$b2)
+  display(objects$p1)
+  display(objects$p2)
+  
+  objects$b1 <- move(objects$b1)
+  objects$b2 <- move(objects$b2)
+  objects$p1 <- move(objects$p1)
+  objects$p2 <- move(objects$p2)
+}
+
 ##########################################
 ## Constructor and methods for Ball class
 ##########################################
@@ -416,45 +454,6 @@ move <- function(x) {
 
 display <- function(x) {
   UseMethod("display", x)
-}
-
-
-#####################
-## Main program code
-#####################
-
-# setup size of window
-settings <- function() {
-  size(400, 400)
-}
-
-# create global "objects" list to store Ball and Particle objects
-objects <- list()
-
-# in setup(), add objects to objects list
-setup <- function() {
-  # ball in upper-right, moving leftward & down
-  objects$b1 <- Ball(350, 50, -1.5, 1.2, 15, "ball1")
-  # ball in uppr-left, moving rightward & down
-  objects$b2 <- Ball(50, 50, 1.2, 1.5, 20, "ball2")
-  # particle in lower-left
-  objects$p1 <- Particle(50, 350)
-  # particle in lower-right
-  objects$p2 <- Particle(350, 350)
-}
-
-# at each frame, draw and update each object
-draw <- function() {
-  background(255, 255, 255)
-  display(objects$b1)
-  display(objects$b2)
-  display(objects$p1)
-  display(objects$p2)
-  
-  objects$b1 <- move(objects$b1)
-  objects$b2 <- move(objects$b2)
-  objects$p1 <- move(objects$p1)
-  objects$p2 <- move(objects$p2)
 }
 ```
 
