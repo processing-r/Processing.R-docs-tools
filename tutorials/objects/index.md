@@ -343,19 +343,21 @@ move <- function(x) {
 }
 ```
 
-This function does exactly what we want: it looks at the class of `x`, calls `move.<class of x>()` instead, and returns the answer. 
+The function `UseMethod()` does exactly what we want: it looks at the class of `x`, calls `move.<class of x>()` instead, and returns the answer. 
 
 This is known as **dispatch**, and a function that "dispatches" to a method based on class information is called a **generic** function.
 
 -----
 
-Compared to languages like Java, C++, etc., S3 objects have the same basic stuff--data, class information, and methods. But, whereas Java et al. collect all of this into a single chunk of code, R S3 objects have all of these pieces defined separately. It is the `"class"` attribute that ties them all together conceptually. In Processing.R, many of these pieces should live in the same file (tab) to help with reading.
+Compared to languages like Java, C++, etc., R S3 objects have the same basic stuff--data, class information, and methods. But, whereas Java et al. collect all of this into a single chunk of code, R S3 objects have all of these pieces defined separately. It is the `"class"` attribute that ties them all together conceptually. In Processing.R, many of these pieces should live in the same file (or tab) to help with reading. If functions for multiple classes appear in the smae long piece of code, organize them by grouping them together and labeling them with comments.
 
 ### Putting it together
 
-Finally, let's write a program that simulates two ball objects and two particle objects. Ideally, we would organize Ball code into its own tab in the editor, and Particle code into its own tab, but for now we'll place all of the code into the main script tab.
+Finally, let's write a program that simulates two ball objects and two particle objects.
 
-Here we will store all of the objects (both Balls and Particles) as elements of a single global `objects` list.
+> Note: Processing.R currently does not support multiple tabs in the PDE editing window -- all code must appear in the one main tab. Ideally, we would separate our code into three tabs -- the main code first, then the Ball code into its own tab and the Particle code into its own tab. For now we'll place all of the code into different sections of the main script tab and label those sections with code comments.
+
+We will also store all objects (both Balls and Particles) as elements of a single global `objects` list.
 
 ```
 #####################
