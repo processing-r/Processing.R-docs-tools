@@ -40,7 +40,7 @@ class Ball(x, y, xs, yx, r, i) {
   }
 }
 
-var b1 = new Ball(200, 215, 2, -1, 20, "Ball1");
+var b1 = new Ball(55, 75, 2, -1, 20, "Ball1");
 var b2 = new Ball(107, 165, -3, 3.2, 10, "Ball2");
 
 b1.move();
@@ -105,7 +105,7 @@ Attributes are also how R stores class information. Let's define a numeric **vec
 
 ```
 setup <- function() {
-  b1 <- c(200, 215, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
+  b1 <- c(55, 75, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
   attr(b1, "class") <- "Ball"
   print(b1)
   print("\n")
@@ -123,14 +123,14 @@ class(b1) <- "Ball"
 We can assign attributes to any kind of data in R. Here we've used a numeric vector of 5 numbers to store data about the ball. This isn't too flexible--vectors (created with the `c()` function) can only store one type of data (numbers in this case) as a basic array. **Lists**, on the other hand, are more flexible: they can hold vectors of different kinds, and even other lists. Maybe we want to store ball data as a location vector, a speed vector, a radius number (actually a vector of length 1 in R), and an id:
 
 ```
-b1 <- list(c(200, 215), c(2, -1), 20, "Ball1")
+b1 <- list(c(55, 75), c(2, -1), 20, "Ball1")
 class(b1) <- "Ball"
 ```
 
 Another cool thing about lists (and vectors too, actually) is that list elements can have names:
 
 ```
-b1 <- list(loc = c(200, 215), speed = c(2, -1),
+b1 <- list(loc = c(55, 75), speed = c(2, -1),
            radius = 20, id = "Ball1")
 class(b1) <- "Ball"
 ```
@@ -139,13 +139,13 @@ This way, we can work with elements by their name, using a `$`-sign.
 
 ```
 setup <- function() {
-  b1 <- list(loc = c(200, 215), speed = c(2, -1), radius = 20, id = "Ball1")
+  b1 <- list(loc = c(55, 75), speed = c(2, -1), radius = 20, id = "Ball1")
   class(b1) <- "Ball"
   print(b1)
   print("\n")
   print(class(b1))    # prints "Ball"
   print("\n")
-  print(b1$loc)       # prints "c(200, 215)"
+  print(b1$loc)       # prints "c(55, 75)"
   print("\n")
   print(b1$loc[2])    # prints "215.0"
   exit()
@@ -168,7 +168,7 @@ By the way, **constructor** is the special name for a function that creates an o
 
 ```
 setup <- function() {
-  b1 <- Ball(200, 215, 2, -2, 20, "Ball1")
+  b1 <- Ball(55, 75, 2, -2, 20, "Ball1")
   print(b1)
   exit()
 }
@@ -195,10 +195,10 @@ move <- function(someball) {
 To use it, we can create a Ball object, and call the function.
 
 ```
-b1 <- Ball(200, 215, 2, -1, 20, "Ball1")
+b1 <- Ball(55, 75, 2, -1, 20, "Ball1")
 b2 <- move(b1)
 
-print(b1$loc)   # prints 200, 215
+print(b1$loc)   # prints 55, 75
 print(b2$loc)   # prints 202, 214
 ```
 
@@ -223,9 +223,9 @@ In order to make this actually display we will need to call if from the Processi
 
 ```
 setup <- function() {
-  b1 <- Ball(200, 215, 2, -1, 20, "Ball1")
+  b1 <- Ball(55, 75, 2, -1, 20, "Ball1")
   b1 <- move(b1)
-  print(b1$loc)   # prints 200, 215
+  print(b1$loc)   # prints 55, 75
 }
 
 draw <- function() {
