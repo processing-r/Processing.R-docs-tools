@@ -397,10 +397,10 @@ draw <- function() {
 }
 
 ##########################################
-## Constructor and methods for Ball class
+## Ball class
 ##########################################
 
-# Ball Constructor
+# constructor
 Ball <- function(x, y, xs, ys, r, i) {
   newb <- list(loc = c(x, y), speed = c(xs, ys), 
                radius = r, id = i)
@@ -409,35 +409,35 @@ Ball <- function(x, y, xs, ys, r, i) {
   return(newb)
 }
 
-# Display method for Ball
+# display method
 display.Ball <- function(someball) {
   ellipse(someball$loc[1], someball$loc[2], 
           someball$radius, someball$radius)
 }
 
-# Move method for Ball, returns updated ball
+# move method -- returns updated ball
 move.Ball <- function(someball) {
   someball$loc <- someball$loc + someball$speed
   return(someball)
 }
 
 #############################################
-## Constructor and methods for Particle class
+## Particle class
 #############################################
 
-# Constructor
+# constructor
 Particle <- function(x, y) {
   newp <- list(loc = c(x, y))
   class(newp) <- "Particle"
   return(newp)
 }
 
-# function for displaying a particle
+# display method
 display.Particle <- function(someparticle) {
   ellipse(someparticle$loc[1], someparticle$loc[2], 2, 2)
 }
 
-# function for moving a particle
+# move method
 move.Particle <- function(someparticle) {
   someparticle$loc[1] <- someparticle$loc[1] + rnorm(1, mean = 0, sd = 2)
   someparticle$loc[2] <- someparticle$loc[2] + rnorm(1, mean = 0, sd = 2)
