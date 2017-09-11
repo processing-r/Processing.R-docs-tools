@@ -396,6 +396,11 @@ draw <- function() {
   objects$b2 <- move(objects$b2)
   objects$p1 <- move(objects$p1)
   objects$p2 <- move(objects$p2)
+
+  # reset sketch every 300 frames
+  if(frameCount %% 300 == 0) {
+    processing$setup()
+  }
 }
 
 ##########################################
