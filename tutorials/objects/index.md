@@ -12,7 +12,7 @@ We'll often talk about **classes** as well--a class is the "blueprint" for poten
 
 In a way, the word `Ball` itself is a bit of data associated with an object, since we need some way to know that an object `x` is a `Ball`, and not, say, a `Car`. In Processing.R we recommend capital initials for class names (e.g. `Ball` rather than `ball`).
 
-> Note: Capitaliing classes (`Ball`, not `ball`) is a coding convention. It is very consistentlu observed in some language and language modes (like Processing / Java) and less consistent in others (p5.js / Javascript, Processing.R / R). Don't be too surprised to see exceptions to this rule!
+> Note: Capitaliing classes (`Ball`, not `ball`) is a coding convention. It is very consistently observed in some languages (like Processing / Java) and less in others (p5.js / Javascript, Processing.R / R). Don't be too surprised to see exceptions to this rule in R code!
 
 When talking about classes, some special terminology is also used. Functions that that are part of classes (and hence part of the objects of that class) are called **methods**. The variables belonging to each object are called **instance variables**, which hold different values for each _instance_ of the class. In the figure above, `radius` has a different value for each Ball object.
 
@@ -49,7 +49,7 @@ b2.move();
 b2.display();
 ```
 
-This code defines a `Ball` class (blueprint), creates two `Ball`  objects `b1` and `b2`, and then asks each in turn to move itself then display itself... but that's enough JavaScript--this tutorial is supposed to be about R! Although modern versions of R can follow this same sort of coding pattern, it hasn't always, since R originally drew inspiration from the statistical language and functional languages Scheme and Lisp.
+This code defines a `Ball` class (blueprint), creates two `Ball` objects `b1` and `b2`, and then asks each in turn to move itself then display itself... but that's enough JavaScript--this tutorial is supposed to be about R! Although modern versions of R can follow this same sort of coding pattern, it hasn't always, since R originally drew inspiration from the statistical language and functional languages Scheme and Lisp.
 
 Over the years, R has been graced with *three* different ways to define classes in code.
 
@@ -63,11 +63,24 @@ Over the years, R has been graced with *three* different ways to define classes 
 
 ### Attributes and Lists
 
-Before we can write some classes in R, we need to discuss a feature of R that is not found in many other languages: **attributes**. R attributes are a kind of "metadata" that we can attach to any other data. Let's create a random sample of 100 numbers using the `rnorm()` function:
+Before we can write some classes in R, we need to discuss a feature of R that is not found in many other languages: **attributes**. R attributes are a kind of "metadata" that we can attach to any other data. 
+
+For these examples we will be experimenting with code in a Processing.R sketch inside the `setup` function, and periodically running the sketch to see the results.
+
+```
+setup <- function() {
+  exit()
+}
+````
+
+Let's create a random sample of 100 numbers using the `rnorm()` function:
 
 ```
 samp <- rnorm(100, mean = 20, sd = 2)
+print(samp)
 ```
+
+> c(17.476707120743, 21.36868260950083, 17.8269424011346, 20.07978640322603, 21.12157543421291,... 100 elements total
 
 We may want to remember, for later use, what kind of data this is. We can do this by making up a "sampletype" attribute and adding it to our sample with the `attr()` function:
 
@@ -75,20 +88,33 @@ We may want to remember, for later use, what kind of data this is. We can do thi
 attr(samp, "sampletype") <- "Normal Sample"
 ```
 
-Then, later, we can extract this attribute:
+Then, later, we can extract attributes:
 
 ```
-stdout$print(attr(samp, "sampletype"))   # prints "Normal Sample"
+setup <- function() {
+  samp <- rnorm(100, mean = 20, sd = 2)
+  attr(samp, "sampletype") <- "Normal Sample"
+  print(samp)
+  print("\n")
+  print(attr(samp, "sampletype")) # Prints "Normal Sample"
+  exit()
+}
 ```
 
 Attributes are also how R stores class information. Let's define a numeric **vector** containing some information for a ball:
 
 ```
-b1 <- c(200, 215, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
-attr(b1, "class") <- "Ball"
+setup <- function() {
+  b1 <- c(200, 215, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
+  attr(b1, "class") <- "Ball"
+  print(b1)
+  print("\n")
+  print(attr(b1, "class"))
+  exit()
+}
 ```
 
-Now, as far as R is concerned, `b1` is a `Ball` object! This is because `"class"` is an attribute that R treats specially to hold this information. This is so common that there's a special function just to do this:
+Now, as far as R is concerned, `b1` is a `Ball` object! This is because `"class"` is an attribute that R treats specially to hold this information. This is so common that there's a special function `class()` just to set the class attribute of an object:
 
 ```
 class(b1) <- "Ball"
@@ -101,20 +127,29 @@ b1 <- list(c(200, 215), c(2, -1), 20, "Ball1")
 class(b1) <- "Ball"
 ```
 
-Another cool thing about lists (and vectors too, actually) is that list elements can have "names":
+Another cool thing about lists (and vectors too, actually) is that list elements can have names:
 
 ```
 b1 <- list(loc = c(200, 215), speed = c(2, -1),
            radius = 20, id = "Ball1")
-
 class(b1) <- "Ball"
 ```
 
 This way, we can work with elements by their name, using a `$`-sign.
 
 ```
-stdout$print(b1$loc)       # prints 200, 215
-stdout$print(b1$loc[2])    # prints 215
+setup <- function() {
+  b1 <- list(loc = c(200, 215), speed = c(2, -1), radius = 20, id = "Ball1")
+  class(b1) <- "Ball"
+  print(b1)
+  print("\n")
+  print(class(b1))    # prints "Ball"
+  print("\n")
+  print(b1$loc)       # prints "c(200, 215)"
+  print("\n")
+  print(b1$loc[2])    # prints "215.0"
+  exit()
+}
 ```
 
 We can assign to new entries of a list by using a new name as well:
@@ -126,26 +161,29 @@ b1$volume <- pi * b1$radius ^ 2   # pi is built into R
 And, since `loc` and `speed` are both vectors, and R is *vectorized* (most operations work on vectors in an element-by-element manner), we can do something like this to print where the ball will be next:
 
 ```
-stdout$print(b1$loc + b1$speed)   # prints 202, 214 
+print(b1$loc + b1$speed)   # prints 202, 214 
 ```
 
 By the way, **constructor** is the special name for a function that creates an object of the proper form.  Usually the function name is the same as the class name:
 
 ```
+setup <- function() {
+  b1 <- Ball(200, 215, 2, -2, 20, "Ball1")
+  print(b1)
+  exit()
+}
+
 Ball <- function(x, y, xs, ys, r, i) {
   newb <- list(loc = c(x, y), speed = c(xs, ys), 
                radius = r, id = i)
-  
   class(newb) <- "Ball"
   return(newb)
 }
-
-b1 <- Ball(200, 215, 2, -2, 20, "Ball1")
 ```
 
 ### Methods
 
-The above covers how we can collect different kinds of data together, and assign a "class" to that collection. But what about the funtions--the methods--that we want to build to go along with the data? In the simplest case, we can just create a function. here's one that takes a Ball object, add the speed to the location, and returns it:
+The above covers how we can collect different kinds of data together, and assign a "class" to that collection. But what about the class functions--the methods--that we want to build to go along with the data? In the simplest case, we can just create a function. here's one that takes a Ball object, add the speed to the location, and returns it:
 
 ```
 move <- function(someball) {
@@ -166,7 +204,7 @@ print(b2$loc)   # prints 202, 214
 
 Notice that we've now got two ball objects, `b1` and `b2`, and they have different locations. This is because most R functions are *pass-by-value*, or, if it helps, "pass-by-copy." This means that inside the `move()` function the variable `someball` is effectively a *copy* of what was passed to the function; the function then modifies this copy and returns it. (Sidenote: many languages are not pass-by-value, and don't make copies in this way. R's Reference Classes operate more similarly to those languages.)
 
-However, if we want to pretend that we modified the same ball, we can just reassign the `b1` variable:
+If we want to modify the `b1` ball we can reassign the variable from the old ball object to the new one.
 
 ```
 b1 <- move(b1)
@@ -180,6 +218,39 @@ display <- function(someball) {
           someball$radius, someball$radius)
 }
 ```
+
+In order to make this actually display we will need to call if from the Processing.R `draw` loop function. Let's modify our sketch, adding `draw`, removing `exit()` from `setup` so that the draw window will stay open, and adding `noLoop()` to draw so that the sketch will draw once, then pause.
+
+```
+setup <- function() {
+  b1 <- Ball(200, 215, 2, -1, 20, "Ball1")
+  b1 <- move(b1)
+  print(b1$loc)   # prints 200, 215
+}
+
+draw <- function() {
+  display(b1)
+  noLoop()
+}
+
+Ball <- function(x, y, xs, ys, r, i) {
+  newb <- list(loc = c(x, y), speed = c(xs, ys), 
+               radius = r, id = i)
+  class(newb) <- "Ball"
+  return(newb)
+}
+
+move <- function(someball) {
+  someball$loc <- someball$loc + someball$speed
+  return(someball)
+}
+
+display <- function(someball) {
+  ellipse(someball$loc[1], someball$loc[2], 
+          someball$radius, someball$radius)
+}
+```
+
 
 ### Dispatch
 
