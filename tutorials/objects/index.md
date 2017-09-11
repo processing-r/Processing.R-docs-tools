@@ -74,7 +74,9 @@ We may want to remember, for later use, what kind of data this is. We can do thi
 ```
 attr(samp, "sampletype") <- "Normal Sample"
 ```
+
 Then, later, we can extract this attribute:
+
 ```
 stdout$print(attr(samp, "sampletype"))   # prints "Normal Sample"
 ```
@@ -85,7 +87,9 @@ Attributes are also how R stores class information. Let's define a numeric **vec
 b1 <- c(200, 215, 2, -1, 20)       # xloc, yloc, xspeed, yspeed, radius
 attr(b1, "class") <- "Ball"
 ```
+
 Now, as far as R is concerned, `b1` is a `Ball` object! This is because `"class"` is an attribute that R treats specially to hold this information. This is so common that there's a special function just to do this:
+
 ```
 class(b1) <- "Ball"
 ```
@@ -105,6 +109,7 @@ b1 <- list(loc = c(200, 215), speed = c(2, -1),
 
 class(b1) <- "Ball"
 ```
+
 This way, we can work with elements by their name, using a `$`-sign.
 
 ```
@@ -117,6 +122,7 @@ We can assign to new entries of a list by using a new name as well:
 ```
 b1$volume <- pi * b1$radius ^ 2   # pi is built into R 
 ```
+
 And, since `loc` and `speed` are both vectors, and R is *vectorized* (most operations work on vectors in an element-by-element manner), we can do something like this to print where the ball will be next:
 
 ```
@@ -124,6 +130,7 @@ stdout$print(b1$loc + b1$speed)   # prints 202, 214
 ```
 
 By the way, **constructor** is the special name for a function that creates an object of the proper form.  Usually the function name is the same as the class name:
+
 ```
 Ball <- function(x, y, xs, ys, r, i) {
   newb <- list(loc = c(x, y), speed = c(xs, ys), 
@@ -146,7 +153,9 @@ move <- function(someball) {
   return(someball)
 }
 ```
+
 To use it, we can create a Ball object, and call the function.
+
 ```
 b1 <- Ball(200, 215, 2, -1, 20, "Ball1")
 b2 <- move(b1)
@@ -154,6 +163,7 @@ b2 <- move(b1)
 print(b1$loc)   # prints 200, 215
 print(b2$loc)   # prints 202, 214
 ```
+
 Notice that we've now got two ball objects, `b1` and `b2`, and they have different locations. This is because most R functions are *pass-by-value*, or, if it helps, "pass-by-copy." This means that inside the `move()` function the variable `someball` is effectively a *copy* of what was passed to the function; the function then modifies this copy and returns it. (Sidenote: many languages are not pass-by-value, and don't make copies in this way. R's Reference Classes operate more similarly to those languages.)
 
 However, if we want to pretend that we modified the same ball, we can just reassign the `b1` variable:
@@ -197,7 +207,9 @@ display <- function(someparticle) {
   ellipse(someparticle$loc[1], someparticle$loc[2], 2, 2)
 }
 ```
+
 Now we can create a couple of particles, have them move, and display them:
+
 ```
 p1 <- Particle(400, 400)
 p2 <- Particle(500, 500)
@@ -208,9 +220,11 @@ p2 <- move(p2)
 display(p1)
 display(p2)
 ```
+
 But wait! We've defined functions `move()` and `display()`; do these overwrite the ones we wrote earlier for balls? Yes! And that's a problem.
 
 One solution is to make these functions class-specific (and remember, we call class-specific functions *methods*), by putting the name of the class as part of the function name:
+
 ```
 # move method for Ball object
 move.Ball <- function(someball) {
@@ -248,13 +262,16 @@ move <- function(x) {
   }
 }
 ```
+
 That's ok, but it turns out this functionality is built into R. Here's the "official" way to do it.
+
 ```
 # R definition for the generic function.
 move <- function(x) {
   UseMethod("move", x)
 }
 ```
+
 This function does exactly what we want: it looks at the class of `x`, calls `move.<class of x>()` instead, and returns the answer. 
 
 This is known as **dispatch**, and a function that "dispatches" to a method based on class information is called a **generic** function.
